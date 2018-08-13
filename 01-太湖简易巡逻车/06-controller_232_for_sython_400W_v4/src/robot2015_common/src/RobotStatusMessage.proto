@@ -1,0 +1,56 @@
+import "ControllerMessage.proto";
+
+message RobotStatusMessage {
+	optional int32 Stat = 1;   //系统状态(正常/报警) 0-故障  1 正常
+	optional ControllerMessage Controller =2;  //运动控制器状态信息
+	optional CameraServiceMessage CameraService =3;  //图像服务模块状态信息
+    optional OnlineMessage OnlineMSg =4;    //设备连接状态
+	optional RoutePlanNaviMessage RoutePlanNavi=5;  //导航模块上报状态
+	optional ImageRecognitionMessage ImageRecognition=6;  //图像识别模块上报状态
+	optional ManagementSystemMessage ManagementSystem=7; // 管理系统信息
+	optional PanTiltCtrlMessage PanTiltCtrl=8; //云台控制
+	
+	
+	message CameraServiceMessage{  //图像服务模块
+		optional int32 InfraredCameraonline= 1; // 红外相机在线标志
+		optional int32 NormalCameraonline= 2; // 可见光相机在线标志
+		optional int32 InfraredCameraFocus= 3; // 可见光相机焦距值
+		
+	};	
+	message ImageRecognitionMessage{ //图像识别
+		optional int32 TaskID= 1;   //当前图像识别任务ID
+		optional int32 TaskSavePath= 2;  //图像存储路径
+	}
+	message OnlineMessage{
+		optional int32 CameraServiceonline= 1; // 图像服务
+		optional int32 RoutePlanNavionline= 2; //路径规划导航
+		optional int32 PanTiltCtrlonline= 3; //云镜控制
+		optional int32 ImageRecognitiononline= 4; //图像识别
+		optional int32 DriverCtrlonline=5;  //车体控制
+		optional int32 A310Cameraonline= 6; // 红外相机在线标志
+		optional int32 NormalCameraonline= 7; // 可见光相机在线标志	
+	};
+	message RoutePlanNaviMessage{//导航&路径规划
+		optional int32 CurrentPosition= 1; // 当前位置  真实地图位置
+		optional int32 CurrentLine= 2; // 当前所在地图线段
+		optional int32 PositionFinish= 3; // 当前线段走过的长度百分比 0-100%
+		optional int32 CurrentTaskEndID= 4; // 当前目标地ID
+	
+	};
+	message PanTiltCtrlMessage{   //云镜控制
+		optional int32 PanTiltDevComo= 1; //云台COM口通信状态
+		optional int32 PanPos= 2; //云台水平位置
+		optional int32 TlitPos= 3; //云台俯仰位置
+		optional int32 ZoomPos= 4; //可见光镜头倍率位置
+		optional int32 FocusPos= 5; //可见光镜头焦距位置
+		optional int32 WiperStauts= 6; //雨刷状态
+		optional int32 FocusStauts= 7; //可见光自动、手动调焦状态 1-auto 0-hand
+	};
+	message ManagementSystemMessage{
+		optional string TaskID= 1; // 当前任务ID  NULL （空闲） 其余GUID
+		optional string TaskName= 2; // 当前任务ID  NULL （空闲）
+		optional string MeterPointID= 3; // 当前测点ID  NULL （空闲） 其余GUID
+		optional string MeterPointName= 4; // 当前测点fram NULL （空闲）
+		optional string StopPointid= 5; // 当前停车点ID
+	};
+}

@@ -1,0 +1,39 @@
+import "ExternSensor.proto";
+import "MotecDriverStat.proto";
+import "BMSMessage.proto";
+import "ErrorMessage.proto";
+import "AlarmMessage.proto";
+import "UltrasoundMessage.proto";
+import "ph3airmsg.proto";
+
+
+message ControllerMessage {
+	optional int32 Stat = 1;   //控制器系统状态(正常/报警) 0-故障  1 正常
+	repeated Dirver DirverMessage = 2;  //驱动器状态  至少4路
+	optional ExternSensor SensorMsg = 3;  //外围传感器状态
+	optional int32 ctrl_device = 4;          //控制设备ID 0-无 1-NET_USER 2-RS232_USER 3-LASER_USER 4-REMOTE_JOY 5-USBREMOTE_JOY  
+	optional BmsMessage bmsMsg = 5;          //BMS模块状态 
+	optional ErrorMessage errormsg=6;      //控制器错误消息 
+	optional AlarmMessage alarmmsg=7;      //控制器告警消息
+	optional UltrasoundMessage Ultrasound=8; //超声波状态
+	optional float LineVelocity=9;    //整车的实际线速度
+	optional float THVelocity=10;    //整车的角速度
+	optional ph3airmsg ph3air=11;    //磷化氢气体
+
+	message Dirver{
+		optional int32 device_status= 1; //驱动器状态  0-不在线  1 正常  其余都为故障
+		optional int32 device_add= 2; //驱动器232 通信地址
+		optional int32 ActVelocity=3;   //实际速度
+		optional int32 SetVelocity=4;   //设定速度
+		optional float ctrl_dc_Voltage=5;  //母线电压
+		optional float CTRL_IPM_TEMPERATURE=6; //功率模块温度
+		optional int32 ActualPos=7;    //电机的实际位置
+		optional bool EmergencyInputValue=8;    //急停开关的输入状态
+		optional string Error = 9; //错误信息	
+		
+		optional MotecDriverStat motec = 10;   //驱动器详细参数状态信息
+		optional float ActCurrent = 11; //驱动器输出电流（电机实时电流）
+		
+	};
+	
+};

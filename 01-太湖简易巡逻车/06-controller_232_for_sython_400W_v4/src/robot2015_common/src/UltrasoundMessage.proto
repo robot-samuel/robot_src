@@ -1,0 +1,4 @@
+message UltrasoundMessage {
+	optional  int32 online=1; //模块是否连接在线 0 断开连接 1 在线
+	repeated  int32 distance_Ultrasonic=2;  //超声波探头的距离值
+};

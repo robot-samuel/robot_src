@@ -1,0 +1,17 @@
+message AlarmMessage {
+	optional bool CtrolBoxHighTemAlarm = 1;   	//控制箱高温警告
+	optional bool CtrolBoxFrozenTemAlarm = 2;   	//控制箱低温警告
+	optional bool BMSModComLostAlarm = 3;   	//电源管理模块离线告警
+	optional bool Emergency_Status_stop=4;     //急停开关使能告警
+	
+	optional bool EcanExternSnsorNdeOFF=5;     //外围传感器软模块离线
+	optional bool ZmqTransNodeOFF=6;           //zmq通信软模块离线
+	optional bool JoyTestNodeOFF=7;     //遥控手柄软模块离线
+	
+	optional bool Ph3ReadNodeOFF=8;     //PH3软模块离线检查
+	optional bool Ph3ReadComLost=9;     //PH3软模块通信离线
+	
+	optional bool LaserComLost=10;     //激光导航模块通信告警
+	optional bool LaserNodeOFF=11;     //激光导航软模块离线告警
+	 	
+};

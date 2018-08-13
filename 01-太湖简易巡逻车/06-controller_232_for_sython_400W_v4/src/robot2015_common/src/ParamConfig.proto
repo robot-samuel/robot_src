@@ -1,0 +1,58 @@
+import "ExternSensorConfig.proto";
+
+message ParamConfig {
+	
+     optional Config_Mode_Driver Config_Driver_Msg = 1;   //驱动模块参数配置
+     optional Config_Error_Mode Config_Error_Msg =2;    //错误检查模块配置
+     optional Config_Alarm_Mode Config_Alarm_Msg =3;    //告警检查模块配置
+     optional ExternSensorConfig Config_extern_Msg=4; //协处理器控制
+	 
+     message Config_Mode_Driver{
+        optional int32 autorun_speed = 1;   //自动运动线速度
+        optional int32 autorun_angel = 2;   //自动运动角速度
+		optional int32 remote_speed = 3;   //遥控器最大线速度
+		optional int32 remote_angel = 4;   //遥控器最大角速度(保留)
+		optional int32 remote_AcceVelocity = 5; //遥控器控制加速度
+		optional float ReductionRatiol = 6;   //减速比1：X
+		optional float WheelSsize  = 7;   //轮子周长 L（m）
+		optional float RWheelSsize  = 8;   //右轮子周长 L（m）
+		optional float LWheelSsize  = 9;   //左轮子周长 L（m）
+		optional int32 EcounterRpm  = 10;   //编码器整圈脉冲数
+	};
+	
+	message Config_Error_Mode{
+	optional bool CarLeftFDriverError_Ischeck = 1;   	//左前轮驱动器故障
+	optional bool CarRightFDriverError_Ischeck = 2;  	//右前轮驱动器故障
+	optional bool CarLeftBDriverError_Ischeck = 3;   	//左后轮驱动器故障
+	optional bool CarRightBDriverError_Ischeck = 4;  	//右后轮驱动器故障
+	
+	optional bool LeftFDriverComError_Ischeck = 5;   	//左前轮驱动通信故障
+	optional bool RightFDriverComError_Ischeck = 6;  	//右前轮驱动通信故障
+	optional bool LeftBDriverComError_Ischeck = 7;   	//左后轮驱动通信故障
+	optional bool RightBDriverComError_Ischeck = 8;  	//右后轮驱动通信故障
+	
+	optional bool ExternComDevError_Ischeck = 9;  	//外围协处理器通信故障
+	optional bool BMSSysError_Ischeck = 10;  	//bms系统故障
+	optional bool ObstacleStopError_Ischeck = 11;  //前障碍物告警
+	optional bool CashSwitchStopError_Ischeck = 12;  //碰撞告警
+	optional bool CurrentOverloadError_Ischeck = 13;  //系统电流超限	
+	optional bool xrs2015_driverNodeOFF_Ischeck =14;     //驱动器管理软模块离线  
+
+	optional bool BObstacleStopError_Ischeck = 15;  //后障碍物告警	
+	optional bool DropStopError_Ischeck = 16;  //防跌落开关
+	
+	};
+	
+	message Config_Alarm_Mode{
+	optional bool CtrolBoxHighTemAlarm_Ischeck = 1;   	//控制箱高温警告
+	optional bool CtrolBoxFrozenTemAlarm_Ischeck = 2;   	//控制箱低温警告
+	optional bool BMSModComLostAlarm_Ischeck = 3;   	//电源管理模块离线告警
+	optional bool Emergency_Status_stop_Ischeck=4;     //急停开关使能告警
+	
+	optional bool EcanExternSnsorNdeOFF_Ischeck=5;     //外围传感器软模块离线
+	optional bool ZmqTransNodeOFF_Ischeck =6;           //zmq通信软模块离线
+	optional bool JoyTestNodeOFF_Ischeck =7;     //遥控手柄软模块离线
+	optional bool Ph3ReadNodeOFF_Ischeck =8;     //PH3软模块离线检查使能
+	optional bool Ph3ReadComLost_Ischeck =9;     //PH3软模块通信离线使能
+	};	
+}

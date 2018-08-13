@@ -1,0 +1,30 @@
+message ExternSensor {
+	repeated  int32 Temp_Pt100= 1; //pt100�ɼ��¶�ֵ
+	repeated  Mode_Temp_humi Temp_humi= 2; //��ʪ�ȴ�����ͨ��
+	repeated  Mode_fan fan_msg=3;  //����ģ����Ϣ
+	repeated int32 IO_Infrared=4;   //������ͨ��  0 ���� 1 ������
+	repeated int32 IO_collision=5;   //����ײͨ��  0 �� 1 ���ϰ�
+	optional string LED_status= 6; //LED ״̬ "LED_CLOSE" "LED_GREEN" "LED_RED" "LED_BLUE" "LED_GREEN_FLI" "LED_RED_FLI" "LED_BLUE_FLI"
+	optional Mode_PX24ES PX24ES=7; //���±��ϴ�����
+	optional int32 online=8; //ģ���Ƿ��������� 0 �Ͽ����� 1 ����
+	
+	message Mode_Temp_humi{
+		optional int32 interior_temp=1;  //�����ڲ��¶�
+		optional int32 interior_humi=2;  //�����ڲ�ʪ��
+	};
+	
+	message Mode_fan{
+		optional int32 fan_ID= 1; //ģ��ID
+		optional int32 fan_Mode= 2; //����ģʽ  0-�ֶ�  1 �Զ�
+		optional int32 fan_status= 3; //����״̬  0-�ر�  1 ��ת
+		optional int32 vaule_open=4;  //�Զ�ģʽ����ֵ
+		optional int32 vaule_close=5;  //�Զ�ģʽ����ֵ
+	};
+	
+	message Mode_PX24ES{
+		optional int32 out1=1; //����1
+		optional int32 out2=2; //����2
+		optional int32 Extraneouslight_out=3; //�ⲿ�����	
+	};	
+};
+

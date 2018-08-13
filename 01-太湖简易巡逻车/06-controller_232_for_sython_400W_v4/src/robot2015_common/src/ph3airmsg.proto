@@ -1,0 +1,4 @@
+message ph3airmsg {
+	optional  int32 online=1; //模块是否连接在线 0 断开连接 1 在线
+	optional  int32 ph3_ppm=2;  //磷化氢气体浓度
+};

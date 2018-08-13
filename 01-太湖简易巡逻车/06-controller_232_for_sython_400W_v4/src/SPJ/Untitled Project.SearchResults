@@ -1,0 +1,3 @@
+---- I heard Matches (2 in 2 files) ----
+DgvManage.cpp (f:\local_svn\qtsvn\02-src\trunk\03-controler\06-controller_232_for_sython_400w_v4\src\management\src):          ROS_INFO("I heard SPEED =%f   ANGEL=%f", statues.Joycmd_velocity.linear.x , 
+ExternMode.cpp (f:\local_svn\qtsvn\02-src\trunk\03-controler\06-controller_232_for_sython_400w_v4\src\extern_sensor\src):   std::cout<<"ExternMode"<<" I heard:"<<"msg->data.size()"<<std::endl;

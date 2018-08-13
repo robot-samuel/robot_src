@@ -1,0 +1,39 @@
+message MotecDriverStat {		
+		optional int32 m_DrivStatus = 1; //状态信息
+		optional int32 m_SerialNo  = 2;  //驱动器序列号
+		optional int32 CTRL_RATED_VOLTAGE = 3; //驱动器额定电压
+		optional int32 CTRL_RATED_CURRENT = 4; //驱动器的额定电流
+		
+		optional int32 CTRL_ADDRESS = 5;   //驱动器地址
+		optional int32 CTRL_BAUDRATE = 6 ;  //RS232/RS485/USB通讯波特率
+		optional int32 CTRL_RATED_POWER = 7 ;  //额定功率
+		optional int32 CTRL_ENCODER_PPR_HI = 8  ;  //每转编码器计数高位
+		optional int32 CTRL_ENCODER_PPR_LO  = 9;  //每转编码器计数低位
+		optional int32 CTRL_QUICK_SOFT_STOP  = 10;  //急停停止方式
+		optional int32 CTRL_CLEAR_ERROR_FLAG = 11 ;  //驱动器报警信息
+		optional int32 CTRL_QUICKSTOP_DECELERATION  = 12;  // 急停减速度
+		optional int32 CTRL_SOFTSTOP_DECELERATION  = 13;  //停止运动减速度
+		optional int32 CTRL_CURRENT_KP  = 14; //电流环比例增益
+		optional int32 CTRL_CURRENT_KI  = 15;   //电流环积分增益
+		optional int32 CTRL_POSITION_KP = 16 ;   //位置环比例增益
+		optional int32 CTRL_POSITION_KI = 17 ;    //位置环积分增益
+		optional int32 CTRL_VELOCITY_KP  = 18;   //速度环比例增益
+		optional int32 CTRL_VELOCITY_KI  = 19;   //速度环积分增益
+		optional int32 CTRL_VELOCITY_FEEDF  = 20;   //速度前馈增益
+		optional int32 CTRL_ACCELERATION_FEEDF  = 21;  //加速度前馈增益
+		optional int32 CTRL_RESERVED_148  = 22;   //系统刚度等级
+		optional int32 CTRL_AXISQ_ACTUAL = 23 ;  //电流实际值
+		optional int32 CTRL_HALL_STATUS  = 24;   //霍尔信号状态
+		optional int32 CTRL_MOTOR_TEMPERATURE  = 25;  //电机当前温度 
+		optional int32 CTRL_DIGITAL_IN_STATUS  = 26;  //数字输入口状态
+		optional int32 CTRL_CONTPROT_CURRENT  = 27;  //连续保护电流
+		optional int32 CTRL_MAXVELOCITY_LIMIT  = 28;  //最高速度限制
+		optional int32 CTRL_MAX_CURRENT_LIMIT  = 29;  //峰值电流限制
+		optional int32 CTRL_I2T_TIME = 30 ;  //I2T电流限制时间 
+		optional int32 CTRL_IPM_TEMPERATURE_ALARM = 31 ;  //IPM温度报警阈值
+		optional int32 CTRL_IPM_TEMPERATURE_FAULT  = 32;  //IPM温度故障阈值
+		optional int32 CTRL_I2T_ACTUAL  = 33;  //I2T实际值
+		optional int32 CTRL_RESERVED299 = 34;  //选择通信模式
+		optional int32 CTRL_CTRL_VEL_ACTUAL = 35;  //电机的当前实际转速
+		 
+};

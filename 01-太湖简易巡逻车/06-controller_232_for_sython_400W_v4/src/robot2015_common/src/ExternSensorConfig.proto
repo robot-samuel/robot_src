@@ -1,0 +1,13 @@
+message ExternSensorConfig {
+	optional int32 Led_Color = 1;   //LED颜色 0 关闭 1-红常亮 2-绿常亮  3 -蓝常亮 4-红闪烁 5-绿闪烁 6 -蓝闪烁 
+	repeated  Config_Mode_fan Config_fan_Msg=2;
+	optional int32 Led_Flight = 3;   //前照明 0 关闭 1-亮
+		
+	message Config_Mode_fan{
+		optional int32 fan_ID= 1; //指明配置模块的ID
+		optional int32 fan_enable= 2; //自动手动切换  0-手动  1 自动
+		optional float vaule_open=3;  //风扇自动开启值
+		optional float vaule_close=4;  //风扇自动关闭值
+		optional float Ctrl_switch=5;  //手动模式下的开关 0-开 1 关
+	};
+};

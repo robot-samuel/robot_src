@@ -1,0 +1,47 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+lspci -vd 13a8:*
+echo -n "0000:02:00.0" > /sys/bus/pci/drivers/serial/unbind
+#cd /home/pc-robot/workspace/lib/xr17v25x_35x-lnx2.6.32-and-newer-pak_ver2.2
+#cd /root/workspace/lib/xr17v25x_35x-lnx2.6.32-and-newer-pak_ver2.2
+cd /home/pc-robot/workspace/lib/xr17v25x_35x-lnx2.6.32-and-newer-pak_ver2.2
+insmod xr17v35x.ko
+echo "i am here" > /home/pc-robot/1.txt
+
+sleep 20
+source /opt/ros/indigo/setup.bash
+#export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/root/workspace/ubuntu_dev/02-controller_232/src
+#export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH/root/workspace/ubuntu_dev/02-controller_232/src
+
+#echo "i am here" > /root/12.txt
+
+#sleep 2
+#cd /home/pc-robot/workspace/ubuntu_dev/02-controller_232/launch
+#source devel/setup.bash 
+#sleep 1
+#./controler_start.shi
+cd /home/pc-robot/
+echo "i am here" > /home/pc-robot/3.txt
+
+./autorun.sh 
+
+#echo "i am here" > /root/123.txt
+
+#sleep 2
+#source /opt/ros/indigo/setup.bash
+#source /home/pc-robot/.bashrc
+#source /home/pc-robot/workspace/ubuntu_dev/02-controller_232/devel/setup.bash
+#roslaunch /home/pc-robot/workspace/ubuntu_dev/02-controller_232/launch/Controller-test.launch
+
+exit 0

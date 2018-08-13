@@ -1,0 +1,21 @@
+message BmsModeConfig {
+	optional Nomal_Config Nomal= 1;   //常规控制
+	optional SOC_Config SOC= 2;   //容量配置
+	optional Fan_Config fan = 3;   //风扇配置
+
+	message SOC_Config{
+		optional int32 Full_Soc = 1;
+		optional int32 Current_Soc = 2;
+	}	
+	message Fan_Config{
+		optional int32 open = 1;
+		optional int32 close = 2;
+	}
+	message Nomal_Config{
+		optional int32 Ctrl_charge = 1;   //充电开启关闭  1 开启 0 关闭
+		optional int32 Ctrl_fan = 2;   //风扇模式控制  1 auto 0 关闭
+		optional int32 Ctrl_reset = 3;   //系统复位控制  1 出发一次重上电 0 正常供电
+		optional int32 Alarm_release = 4;   //报警释放  1 清除所有故障位 0 关闭
+		optional int32 Ctrl_motor_power = 5;   //动力电控制  1 接通 0 关闭
+	}
+}
