@@ -121,9 +121,6 @@ class Dgv_Manage
   
   enum ZMQCMDID{
                     FUN_HEART =1,    /*����*/
-                    FUN_GET_TOKEN,	/*��������ֵ*/
-                    FUN_GET_ALLSTATUS,	/*�������״̬*/
-                    FUN_GET_SPEED,	/*��������ٶ�����*/
                     FUN_CTRL_FORWARD,	/*�Զ�ǰ��*/
                     FUN_CTRL_BACKWARD,	/*�Զ�����*/
                     FUN_CTRL_TURNLEFT,	/*�Զ���ת*/
@@ -131,12 +128,6 @@ class Dgv_Manage
                     FUN_CTRL_STOP,	/*ʹ��ͣ������ͣ��*/
                     FUN_CTRL_STOPFREE,	/*stop run=0*/
                     FUN_CTRL_RUN_SPEED_ANGLE,	/*���ո����ٶ�ֵ�˶�*/
-                    FUN_CTRL_RUN_LEFT_RIGHT,	/*���ո����������ٶ�ֵ�˶�*/
-                    FUN_DISSOLUTION_ALARM,	/*�Ӵ����б���*/
-                    FUN_SET_TOKEN,	/*��������ֵ*/
-                    FUN_CONFIGCAR,	/*���ó���*/
-                    FUN_GETCONFIGCAR,	/*��õ�ǰ������������*/
-                    FUN_UPDATA_ALL,
                     FUN_Realse_Loop,     	/*�������ͷ�*/ 
                     FUN_Enable_Loop,     	/*������ʹ��*/   
                     FUN_ClearError,     	/*�������������*/   

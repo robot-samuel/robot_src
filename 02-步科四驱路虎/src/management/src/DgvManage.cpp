@@ -28,23 +28,13 @@ Dgv_Manage::Dgv_Manage()
 
             int index=1;
             zmqcmdlist.insert(std::make_pair("HeartBeat",index++ ));
-            zmqcmdlist.insert(std::make_pair("gettoken",index++));
-            zmqcmdlist.insert(std::make_pair( "getallstatues",index++));  
-            zmqcmdlist.insert(std::make_pair( "getspeed",index++));  
             zmqcmdlist.insert(std::make_pair("ctrlforward",index++));    
             zmqcmdlist.insert(std::make_pair("ctrlbackward",index++));   
             zmqcmdlist.insert(std::make_pair("ctrlturnleft",index++));   
             zmqcmdlist.insert(std::make_pair( "ctrlturnright",index++));   
             zmqcmdlist.insert(std::make_pair("ctrlstop",index++));     //cmdstop
             zmqcmdlist.insert(std::make_pair("ctrlstopfree",index++)); //stop run=0
-            zmqcmdlist.insert(std::make_pair("ctrlrun-speed-angle",index++));   
-            zmqcmdlist.insert(std::make_pair("ctrlrun-left-right",index++));    
-            zmqcmdlist.insert(std::make_pair("dissolutionalarm",index++));   
-            zmqcmdlist.insert(std::make_pair("settoken",index++));   
-            zmqcmdlist.insert(std::make_pair("configcar",index++));   
-            zmqcmdlist.insert(std::make_pair("getcarconfig",index++));  
-            zmqcmdlist.insert(std::make_pair("Dcupdataall",index++)); 
-            
+            zmqcmdlist.insert(std::make_pair("ctrlrun-speed-angle",index++));     
            zmqcmdlist.insert(std::make_pair("ctrlRealse",index++));
            zmqcmdlist.insert(std::make_pair("ctrlEnable",index++));
            zmqcmdlist.insert(std::make_pair("ClearError",index++));
