@@ -1,0 +1,5 @@
+---- CRC16 Matches (4 in 2 files) ----
+laser_ctrl_Mode.cpp (f:\local_svn\03-rosrob_pm\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\uart_ctrl\src):unsigned short int laser_ctrl_Mode::CRC16(unsigned char *p,unsigned int len)
+laser_ctrl_Mode.cpp (f:\local_svn\03-rosrob_pm\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\uart_ctrl\src):	unsigned short int crc=CRC16(ptr,8);
+laser_ctrl_Mode.cpp (f:\local_svn\03-rosrob_pm\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\uart_ctrl\src):        unsigned short int check= CRC16(&pd[2],16);
+laser_ctrl_Mode.hpp (f:\local_svn\03-rosrob_pm\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\uart_ctrl\src):	//unsigned short int CRC16(unsigned char *p,unsigned int len);

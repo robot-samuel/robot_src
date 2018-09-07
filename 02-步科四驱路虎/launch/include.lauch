@@ -1,0 +1,23 @@
+<launch>
+  <!-- declare arg to be passed in -->
+  <arg name="COM1" value="/dev/ttyS0"/> 
+  <arg name="COM2" value="/dev/ttyS1"/> 
+  <arg name="COM3" value="/dev/ttyS2"/> 
+  <arg name="COM4" value="/dev/ttyS3"/> 
+  <arg name="COM5" value="/dev/ttyS4"/> 
+  <arg name="COM6" value="/dev/ttyS5"/> 
+  <arg name="COM7" value="/dev/ttyXR0"/> 
+  <arg name="COM8" value="/dev/ttyXR1"/> 
+  <arg name="COM9" value="/dev/ttyXR2"/> 
+  <arg name="COM10" value="/dev/ttyXR3"/> 
+  
+  <arg name="BANDRATE_115200" value="115200"/> 
+  <arg name="BANDRATE_9600" value="9600"/> 
+  <arg name="BANDRATE_2400" value="2400"/> 
+  
+  <arg name="DEV_DIR_ADD_LF" value="100"/> 
+  <arg name="DEV_DIR_ADD_LB" value="102"/> 
+  <arg name="DEV_DIR_ADD_RF" value="101"/> 
+  <arg name="DEV_DIR_ADD_RB" value="103"/> 
+
+</launch>
