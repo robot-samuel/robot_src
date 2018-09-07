@@ -1,0 +1,52 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+echo 16 > /sys/class/graphics/fb0/bits_per_pixel
+mount -o remount -o noatime /
+
+
+ip link set can0 down
+ip link set can0 type can restart-ms 100
+ip link set can0 type can tq 125 prop-seg 6 phase-seg1 7 phase-seg2 2 sjw 1
+ip link set can0 type can bitrate 500000 loopback off
+ip link set can0 up
+ip -details -statistics link show can0
+
+ip link set can1 down
+ip link set can1 type can restart-ms 100
+ip link set can1 type can tq 125 prop-seg 6 phase-seg1 7 phase-seg2 2 sjw 1
+ip link set can1 type can bitrate 500000 loopback off
+ip link set can1 up
+ip -details -statistics link show can1
+
+ip -details link show can1
+
+#gpio in
+echo 27 > /sys/class/gpio/export
+echo 28 > /sys/class/gpio/export
+echo 80 > /sys/class/gpio/export
+echo 94 > /sys/class/gpio/export
+
+#gpio out
+echo 20 > /sys/class/gpio/export
+echo 30 > /sys/class/gpio/export
+echo 85 > /sys/class/gpio/export
+echo 86 > /sys/class/gpio/export
+
+
+sleep 5
+cd /root
+./autorun.sh
+
+
+
+exit 0

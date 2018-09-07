@@ -1,0 +1,28 @@
+<launch>
+  <arg name="COM1" value="/dev/ttymxc0"/> 
+  <arg name="COM2" value="/dev/ttymxc1"/> 
+  <arg name="COM3" value="/dev/ttymxc2"/> 
+  <arg name="COM4" value="/dev/ttymxc3"/> 
+  <arg name="COM5" value="/dev/ttymxc4"/> 
+
+  
+  <arg name="BANDRATE_115200" value="115200"/> 
+  <arg name="BANDRATE_9600" value="9600"/> 
+  <arg name="BANDRATE_2400" value="2400"/> 
+  <arg name="BANDRATE_38400" value="38400"/> 
+  <arg name="BANDRATE_19200" value="19200"/> 
+  
+
+
+  
+     <!-- run qtcontroller -->
+  <node pkg="management" name="dgv_manageNode"  type="dgv_manageNode" output="screen"/>
+
+  <node pkg="zmq_ros" name="ZmqTransNode"  type="ZmqtransNode" output="screen"/>
+	
+	<node pkg="e9gpio" name="e9gpioNode"  type="e9gpioNode" output="screen" />
+
+  <node pkg="sensor_weather_FRT_FWS" name="SensorWeatherNode"  type="SensorWeatherNode" output="screen"  args="$(arg COM3) $(arg BANDRATE_19200)"/>
+
+
+</launch>

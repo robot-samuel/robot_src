@@ -1,0 +1,6 @@
+---- zmq_SendRpc Matches (5 in 2 files) ----
+Zmqclient_class.cpp (f:\local_svn\qtsvn\02-src\trunk\03-controler\07-autodoor\src\zmq_ros\src):		zmq_SendRpc(zmqheart_SendRpc(),ZMQ_NAME_AUTTODOOR);
+Zmqclient_class.cpp (f:\local_svn\qtsvn\02-src\trunk\03-controler\07-autodoor\src\zmq_ros\src):void zmqclient::zmq_SendRpc(std::string msg,std::string topic)
+Zmqclient_class.cpp (f:\local_svn\qtsvn\02-src\trunk\03-controler\07-autodoor\src\zmq_ros\src):                		zmq_SendRpc(msg->data,to);
+Zmqclient_class.cpp (f:\local_svn\qtsvn\02-src\trunk\03-controler\07-autodoor\src\zmq_ros\src):                zmq_SendRpc(msg->data,ZMQ_NAME_SERVER);
+Zmqclient_class.hpp (f:\local_svn\qtsvn\02-src\trunk\03-controler\07-autodoor\src\zmq_ros\src):    void zmq_SendRpc(std::string msg,std::string topic);

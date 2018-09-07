@@ -1,0 +1,35 @@
+message WeatherMessage {
+	optional int32 Online=1;	   //1��������ͨ0δ��ͨ
+	optional float Direction=2;     //ƽ�����򣬵�λdeg
+	optional float MaxDir=3;    	 //�����򣬵�λdeg
+	optional float MiniDir=4;    	 //��С���򣬵�λdeg
+	optional float Speed=5;    		//ƽ�����٣���λm/s, km/h
+	optional float MaxSpeed=6;	   //�����٣���λm/s, km/h
+	optional float MiniSpeed=7;	   //��С���٣���λm/s, km/h
+	optional float Temp=8;	   		//�¶ȣ���λC
+	optional float Humi=9;    		//ʪ�ȣ���λ%RH
+	optional float Rain=10;	   		//��������λmm
+	optional float Pressure=11;	   //��ѹ����λhPa, Pa, bar
+	optional float Strength=12;	   //����ǿ�ȣ���λmm/h
+
+	
+	message GPS{
+	optional float La=1;	   		//����
+	optional float Lo=2;	   //γ��
+	optional int64 GPSTime=3;	   //GPS ʱ��
+
+	};
+
+	message DateTime {
+		optional int32 Year=1;
+		optional int32 Month=2;
+		optional int32 Day=3;
+		optional int32 Hour=4;
+		optional int32 Miunte=5;
+		optional int32 Second=6;
+	};
+
+	
+	optional GPS GPSdate=13;
+	optional DateTime Date=14;
+};
