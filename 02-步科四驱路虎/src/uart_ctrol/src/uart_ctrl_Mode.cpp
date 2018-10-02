@@ -239,15 +239,19 @@ void uart_ctrl_Mode::Drivers_ros_cmdCall(const dgvmsg::Encounter::ConstPtr& msg)
 		
 	if(msg->devadd== DEV_DIR_ADD_LF){
 		LF_counter = msg->encounter;
+		//std::cout<<ttyport<<"uart_ctrl_Mode ->DEV_DIR_ADD_LF = "<<LF_counter<<std::endl;
 	}
 	else if(msg->devadd == DEV_DIR_ADD_RF){
-		LB_counter = msg->encounter;
+		RF_counter = msg->encounter;
+		//std::cout<<ttyport<<"uart_ctrl_Mode ->DEV_DIR_ADD_RF = "<<RF_counter<<std::endl;
 	}
 	else if(msg->devadd== DEV_DIR_ADD_LB){
-		RF_counter = msg->encounter;
+		LB_counter = msg->encounter;
+		//std::cout<<ttyport<<"uart_ctrl_Mode ->DEV_DIR_ADD_LB = "<<LB_counter<<std::endl;
 	}
 	else if(msg->devadd == DEV_DIR_ADD_RB){
 		RB_counter = msg->encounter;
+		//std::cout<<ttyport<<"uart_ctrl_Mode ->DEV_DIR_ADD_RB = "<<RB_counter<<std::endl;
 	}			                   
  } 
 
@@ -290,7 +294,7 @@ bool uart_ctrl_Mode::procss_recv_buffer()
 						if(1==Get_check()){
 							vspeed = Get_Sdata1();
 							aspeed = Get_Sdata2();
-							std::cout<<"speed="<<vspeed<<"angel speed = "<<aspeed<<std::endl;
+							//std::cout<<"speed="<<vspeed<<"angel speed = "<<aspeed<<std::endl;
 							Readarray.assign(0);
 							return true;
 							}

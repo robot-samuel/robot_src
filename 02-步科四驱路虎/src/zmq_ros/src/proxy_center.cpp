@@ -29,11 +29,11 @@ int main (int argc, char *argv[])
     //  This is where the weather server sits
     zmq::socket_t frontend(context, ZMQ_SUB);
     //frontend.bind("tcp://192.168.1.102:2015");
-	frontend.bind("tcp://*:1234");
+	frontend.bind("tcp://*:2015");
 
     //  This is our public endpoint for subscribers
      zmq::socket_t backend (context, ZMQ_PUB);
-    backend.bind("tcp://*:5678");
+    backend.bind("tcp://*:2016");
 
     //  Subscribe on everything
     frontend.setsockopt(ZMQ_SUBSCRIBE, "", 0);

@@ -179,7 +179,7 @@ int Dgv_statues::is_CanContenct(){
 }
 int Dgv_statues::is_DriverOK(){
 	for(int index=0;index<DRIVER_AMOUNT;index++){
-	if(Dirver[index].error()!="OK"){
+	if((Dirver[index].error()!="OK")&&(Dirver[index].error()!="")){
 			std::cout<<"is_DriverOK ="<<index<<" Dirver =" <<Dirver[index].error()<<std::endl;
 			return 0;
 		}

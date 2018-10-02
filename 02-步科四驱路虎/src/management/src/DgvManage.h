@@ -121,6 +121,9 @@ class Dgv_Manage
   
   enum ZMQCMDID{
                     FUN_HEART =1,    /*����*/
+                    FUN_GET_TOKEN,	/*��������ֵ*/
+                    FUN_GET_ALLSTATUS,	/*�������״̬*/
+                    FUN_GET_SPEED,	/*��������ٶ�����*/
                     FUN_CTRL_FORWARD,	/*�Զ�ǰ��*/
                     FUN_CTRL_BACKWARD,	/*�Զ�����*/
                     FUN_CTRL_TURNLEFT,	/*�Զ���ת*/
@@ -128,6 +131,12 @@ class Dgv_Manage
                     FUN_CTRL_STOP,	/*ʹ��ͣ������ͣ��*/
                     FUN_CTRL_STOPFREE,	/*stop run=0*/
                     FUN_CTRL_RUN_SPEED_ANGLE,	/*���ո����ٶ�ֵ�˶�*/
+                    FUN_CTRL_RUN_LEFT_RIGHT,	/*���ո����������ٶ�ֵ�˶�*/
+                    FUN_DISSOLUTION_ALARM,	/*�Ӵ����б���*/
+                    FUN_SET_TOKEN,	/*��������ֵ*/
+                    FUN_CONFIGCAR,	/*���ó���*/
+                    FUN_GETCONFIGCAR,	/*��õ�ǰ������������*/
+                    FUN_UPDATA_ALL,
                     FUN_Realse_Loop,     	/*�������ͷ�*/ 
                     FUN_Enable_Loop,     	/*������ʹ��*/   
                     FUN_ClearError,     	/*�������������*/   
@@ -168,10 +177,10 @@ class Dgv_Manage
 	
 	
 	const int de_MAXRPM = 3500;  //���ת�� 0.1RPM
-	const int de_JODYMAXSPEED = 200;  //�ɱ�ң������������ٶ� ��mm/s
-	const int de_JODYMAXANGEL = 200;  //�ɱ�ң������������ٶ� ��mm/s
-	const int de_CTRLMAXSPEED = 200;   //�ɱ�ָ���������ٶ� ��mm/s
-	const int de_CTRLMAXANGLE = 200;   //�ɱ�ָ���������ٶ� ��mm/s
+	const int de_JODYMAXSPEED = 1500;  //�ɱ�ң������������ٶ� ��mm/s
+	const int de_JODYMAXANGEL = 1200;  //�ɱ�ң������������ٶ� ��mm/s
+	const int de_CTRLMAXSPEED = 1700;   //�ɱ�ָ���������ٶ� ��mm/s
+	const int de_CTRLMAXANGLE = 1200;   //�ɱ�ָ���������ٶ� ��mm/s
 	const int de_CTRLRATE = 20;   //ָ���������
 	
 	const int de_CTRLMAXRPM = ((int)((de_CTRLMAXSPEED/(1000*de_WheelSsize))*(de_ReductionRatiol*60*1)));  //���ת�� 0.1RPM	

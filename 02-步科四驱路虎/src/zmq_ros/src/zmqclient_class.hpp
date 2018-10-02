@@ -16,17 +16,12 @@
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/progress.hpp>
-
 #include <robot2015_common/cpp/PackageMessage.pb.h>
 
 
 #include "ros/ros.h"
 #include "ros/console.h"
 #include "std_msgs/String.h"
-#include <ros/time.h>  
-
-#include "zlogClass.h"
-
 
 #define SUB_TIMEOUT 2500  //  msecs, (> 1000!)
 #define ERROR_context_t_INIT "zmqcpp 001"
@@ -91,16 +86,13 @@ public:
         
         void insert_topic(std::string topic);
 
-        int connect(void);
+        void connect(void);
 		void connect_pub(void);
 		void connect_sub(void);
 		
 		void destory_sub(void);
 		void destory_pub(void);
 		void destory(void);
-
-		int disconnect(void);
-		
 		
 		bool isconnect();
 		
@@ -117,18 +109,16 @@ public:
 		
 		std::string get_msg_string (zmq::message_t& message);
 
-  
     void dirv_update_Callback(const std_msgs::String::ConstPtr& msg);
     void dirv_zmq_Callback(const std_msgs::String::ConstPtr& msg);
-	void weather_update_Callback(const std_msgs::String::ConstPtr& msg);
     std::string Get_to(std::string fun);
     void zmq_SendRpc(std::string msg,std::string topic);
     void dirv_ros_SendRpc(std::string msg);
 
     int  show_mainmsg(PackageMessage & msg);
-    int unpackage_main(std::string fun);
+    void unpackage_main(std::string fun);
     
-     std::string zmqheart_SendRpc(void);
+     void pacgagemessage_heart(std::string& to,std::string& from);
       std::string get_session(void);
       int proc_zmq_recvheart(std::string pack);
     ros::Publisher rospub;
@@ -147,7 +137,8 @@ private:
      zmq::socket_t  * zmqsub_;
 
     OnlineLogMessage center_online;
-	zlogClass logfile;
+     //boost::shared_ptr< zmq::socket_t > zmqpub_;
+    // boost::shared_ptr< zmq::socket_t > zmqsub_;
 
 };  
 

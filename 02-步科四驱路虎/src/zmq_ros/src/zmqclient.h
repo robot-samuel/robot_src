@@ -1,7 +1,6 @@
 #ifndef MYZMQCLIENT_H
 #define MYZMQCLIENT_H
 
-#pragma once
 
 
 #define ZMQ_NAME_CENTER "Rb_MsgCenter"
@@ -19,14 +18,17 @@
 
 #define MYGEARTRpcTopic "HeartBeat"
 
-#define UPDATE_FUN_NAME "Dcupdataall"
+#define DCOM1 "/dev/ttyS0" 
+#define DCOM2 "/dev/ttyS1"
+#define DCOM3 "/dev/ttyS2" 
+#define DCOM4 "/dev/ttyS3"
+#define DCOM5 "/dev/ttyS4"
+#define DCOM6 "/dev/ttyS5"
 
-#define DCOM2 "/dev/ttymxc1"
-#define DCOM3 "/dev/ttymxc2" 
-#define DCOM4 "/dev/ttymxc3"
-
-#define CAN1 "can0"
-#define CAN2 "can1"
+#define DCOM7 "/dev/ttyXR0"
+#define DCOM8 "/dev/ttyXR1"
+#define DCOM9 "/dev/ttyXR2" 
+#define DCOM10 "/dev/ttyXR3"
 
 #include <robot2015_common/cpp/PackageMessage.pb.h>
 #include <robot2015_common/cpp/ControllerMessage.pb.h>
@@ -37,9 +39,5 @@
 
 #include <robot2015_common/cpp/ParamConfig.pb.h>
 #include <robot2015_common/cpp/BmsModeConfig.pb.h>
-
-#define CONFIGLOGPATH "/home/pc-robot/workspace/controller/06-controller_232_for_sython_400W_v4/log/zlog.conf"
-
-
 #endif // MYZMQCLIENT_H
 

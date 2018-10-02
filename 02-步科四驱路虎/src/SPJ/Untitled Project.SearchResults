@@ -1,5 +1,20 @@
----- CRC16 Matches (4 in 2 files) ----
-laser_ctrl_Mode.cpp (f:\local_svn\03-rosrob_pm\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\uart_ctrl\src):unsigned short int laser_ctrl_Mode::CRC16(unsigned char *p,unsigned int len)
-laser_ctrl_Mode.cpp (f:\local_svn\03-rosrob_pm\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\uart_ctrl\src):	unsigned short int crc=CRC16(ptr,8);
-laser_ctrl_Mode.cpp (f:\local_svn\03-rosrob_pm\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\uart_ctrl\src):        unsigned short int check= CRC16(&pd[2],16);
-laser_ctrl_Mode.hpp (f:\local_svn\03-rosrob_pm\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\uart_ctrl\src):	//unsigned short int CRC16(unsigned char *p,unsigned int len);
+---- DEV_DIR_ADD_LF Matches (19 in 8 files) ----
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):		if(DriverInforecv.device_add() == DEV_DIR_ADD_LF){
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):			//std::cout<<"DEV_DIR_ADD_LF"<<std::endl;
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):     int leftrpm=calculate_rpm_speed(DEV_DIR_ADD_LF,LEFT);
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):     int leftrpm=calculate_rpm_speed(DEV_DIR_ADD_LF,LEFT);
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):		Motec.driver[0].name="DEV_DIR_ADD_LF";
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):		Motec.driver[0].add = DEV_DIR_ADD_LF;
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):		Motec.driver[0].name="DEV_DIR_ADD_LF";
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):		Motec.driver[0].add = DEV_DIR_ADD_LF;
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):       //velocity[0]=calculate_rpm_speed(DEV_DIR_ADD_LF,leftspeed);
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):       velocity[0]=calculate_rpm_speed(DEV_DIR_ADD_LF,leftspeed);
+DgvManage.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):	 if(dev_add == DEV_DIR_ADD_LF){
+DgvManage.h (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):            DEV_DIR_ADD_LF =101,
+DgvStatues.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):			driveradd[index] = DEV_DIR_ADD_LF+index;
+DgvStatues.h (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\management\src):            DEV_DIR_ADD_LF =100,
+dkincocanfd133Mode.hpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\dkincocanfd133\src):            DEV_DIR_ADD_LF =1,
+Dkincocanfd133_single.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\dkincocanfd133\src):         int fid[4]={kincocanfd133Mode::DEV_DIR_ADD_LF+CHANGSTATUS+P2P,               
+uart_ctrl_Mode.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\uart_ctrol\src):	Ent.cnt[0].devadd=(int)DEV_DIR_ADD_LF;
+uart_ctrl_Mode.cpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\uart_ctrol\src):	if(msg->devadd== DEV_DIR_ADD_LF){
+uart_ctrl_Mode.hpp (e:\百度云同步盘\项目记录\24-电力巡检机器人\robot_src\02-步科四驱路虎\src\uart_ctrol\src):            DEV_DIR_ADD_LF =101,

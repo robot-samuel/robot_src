@@ -739,8 +739,11 @@ std::string kincors232Fd133Driver::GetStrError(){
    if(errstr.size()==0){
            errstr+="OK";
     }
-	
-   std::cout<<errstr<<"size="<<errstr.size()<<std::endl;
+
+   if(errstr != "OK")	{
+   		std::cout<<"[error] "<<errstr<<"   size="<<errstr.size()<<std::endl;
+   	}
+   
    return errstr;
 }
 

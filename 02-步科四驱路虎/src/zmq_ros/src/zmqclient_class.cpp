@@ -6,7 +6,6 @@
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>  
-
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/format.hpp>
 #include <iostream>  
@@ -44,9 +43,6 @@ zmqclient::zmqclient(){
       // boost::shared_ptr< zmq::socket_t > m_ssub(new zmq::socket_t(*zmqcontext,ZMQ_SUB));
         zmqpub_=new zmq::socket_t(*zmqcontext,ZMQ_PUB);
         zmqsub_ =new zmq::socket_t(*zmqcontext,ZMQ_SUB);
-
-	 logfile.init( CONFIGLOGPATH, "zmq");
-	 logfile.out_info("======zmqclient init======");
 }
 zmqclient::zmqclient(std::string &ipc_pub,std::string &ipc_sub)
     :zmqadd_pub_(ipc_pub),
@@ -63,7 +59,7 @@ zmqclient::zmqclient(std::string &ipc_pub,std::string &ipc_sub)
         //define socket
         connectflag = false;
         try{
-        	zmqcontext = new zmq::context_t(1,1024);
+        zmqcontext = new zmq::context_t(1,1024);
        
             }
         catch(...){
@@ -73,11 +69,7 @@ zmqclient::zmqclient(std::string &ipc_pub,std::string &ipc_sub)
         zmqsub_ =new zmq::socket_t(*zmqcontext,ZMQ_SUB);
 
 
-
-	 logfile.init( CONFIGLOGPATH, "zmq");
-	 
-	 logfile.out_info(zmqadd_pub_);
-	 logfile.out_info(zmqadd_sub_);   
+        
 }
 
 
@@ -94,26 +86,20 @@ void zmqclient::insert_topic(std::string topic){
       zmqsubtopic_s.insert(std::make_pair(fmt1.str(), topic));   
 }
 
-
-int zmqclient::connect(void){
+void zmqclient::connect(void){
         int rc = -1;
         //connect to the server
         try{
-        		this->zmqpub_->connect(this->zmqadd_pub_.c_str() );
+        this->zmqpub_->connect(this->zmqadd_pub_.c_str() );
             }
         catch(...){
-           // std::cout << "zmqclient: an error_t was thrown->" << ERROR_connect_PUB <<std::endl;  
-			 logfile.out_info("zmqclient: an error_t was thrown->ERROR_connect_PUB");
-		   	return -1;
+            std::cout << "zmqclient: an error_t was thrown->" << ERROR_connect_PUB <<std::endl;  
             }
-		
          try{
-        		this->zmqsub_->connect(this->zmqadd_sub_.c_str());
+        this->zmqsub_->connect(this->zmqadd_sub_.c_str() );
             }
         catch(...){
-          //  std::cout << "zmqclient: an error_t was thrown->" << ERROR_connect_SUB <<std::endl;  
-		 logfile.out_info("zmqclient: an error_t was thrown->ERROR_connect_SUB");
-		  return -1;
+            std::cout << "zmqclient: an error_t was thrown->" << ERROR_connect_SUB <<std::endl;  
             }
         
         int topicn = zmqsubtopic_s.size();
@@ -130,26 +116,24 @@ int zmqclient::connect(void){
         boost::format fmt2("connect to PUB: %1% SUB: %2% is successed");
         fmt2 % this->zmqadd_pub_;
         fmt2 % this->zmqadd_sub_;
-        //std::cout <<fmt2.str() << std::endl;
-	logfile.out_info(fmt2.str());
+        std::cout <<fmt2.str() << std::endl;
+
         this ->connectflag = true;
-	return  1;
 }
 void zmqclient::connect_pub(void){
         int rc = -1;
         //connect to the server
         try{
-        		this->zmqpub_->connect(this->zmqadd_pub_.c_str() );
+        this->zmqpub_->connect(this->zmqadd_pub_.c_str() );
             }
         catch(...){
-           // std::cout << "zmqclient: an error_t was thrown->" << ERROR_connect_PUB <<std::endl;  
-	      logfile.out_info("zmqclient: an error_t was thrown->ERROR_connect_PUB");
+            std::cout << "zmqclient: an error_t was thrown->" << ERROR_connect_PUB <<std::endl;  
             }
         
         boost::format fmt2("connect to PUB: %1%  is successed");
         fmt2 % this->zmqadd_pub_;
-        //std::cout <<fmt2.str() << std::endl;
-	logfile.out_info(fmt2.str());
+        std::cout <<fmt2.str() << std::endl;
+
         this ->connectflag = true;
 }
 
@@ -160,8 +144,7 @@ void zmqclient::connect_sub(void){
         this->zmqsub_->connect(this->zmqadd_sub_.c_str() );
             }
         catch(...){
-           // std::cout << "zmqclient: an error_t was thrown->" << ERROR_connect_SUB <<std::endl; 
-			 logfile.out_info("zmqclient: an error_t was thrown->ERROR_connect_SUB");
+            std::cout << "zmqclient: an error_t was thrown->" << ERROR_connect_SUB <<std::endl;  
             }
         
               int topicn = zmqsubtopic_s.size();
@@ -177,8 +160,7 @@ void zmqclient::connect_sub(void){
         
         boost::format fmt2("connect to  SUB: %1% is successed");
         fmt2 % this->zmqadd_sub_;
-       // std::cout <<fmt2.str() << std::endl;
-	logfile.out_info(fmt2.str());
+        std::cout <<fmt2.str() << std::endl;
 
         this ->connectflag = true;
 }
@@ -195,33 +177,6 @@ void zmqclient::destory(void){
    delete zmqpub_;
    delete zmqsub_;
    delete zmqcontext;
-   connectflag = false;
-}
-
-
-int zmqclient::disconnect(void){
-
-      connectflag = false;	
-      std::cout <<"["<<__FUNCTION__ << "]"<< "disconnect the  connect"<<std::endl;
-     try{
-   		this->zmqpub_->disconnect(this->zmqadd_pub_.c_str());
-		
-   		
-     	}
-    catch(...){
-           // std::cout << "zmqclient: an error_t was thrown->" << "disconnect" <<std::endl;  
-			logfile.out_info("zmqclient: an error_t was thrown1->->disconnect");
-		   	return -1;
-           }
-        try{   
-	this->zmqsub_->disconnect(this->zmqadd_sub_.c_str() );
-     	}
-    catch(...){
-           // std::cout << "zmqclient: an error_t was thrown->" << "disconnect" <<std::endl;  
-			logfile.out_info("zmqclient: an error_t was thrown2->->disconnect");
-		   	return -1;
-           }
-	return 1;
 }
 
 
@@ -232,88 +187,64 @@ bool zmqclient::isconnect(){
 void zmqclient::zmqrecvLoop( )
     {  
 
-//try{
+
      std::cout << "start to thread "<<"["<<__FUNCTION__ << "]"<<std::endl;
-  
+    try{
             //ros::Rate loop_rate(50);
                //  Poll socket for a subscriber, with timeout
                int time_out_conter=0;
-         zmq::pollitem_t items[] = { { *(this->zmqsub_), 0, ZMQ_POLLIN, 0 } };          
+            zmq::pollitem_t items[] = { { *(this->zmqsub_), 0, ZMQ_POLLIN, 0 } };          
         while (ros::ok()) 
         {
            // loop_rate.sleep();
-	      if(connectflag == true){  
-	             // 100 milliseconds  ¶¨ÒåÒ»ÊÂ¼þ
-			zmq::poll (&items[0], 1,  20);
-	       		std::string topic;
-		  	std::string step;
-			std::string context;
 
-			topic.clear();
-			step.clear();
-			context.clear();
-	            if (items[0].revents & ZMQ_POLLIN) 
-	                {
-	                    //recv a messag
-	                    int more=0;
-	                    std::size_t more_size = sizeof (more);
-	                    //zmq::message_t message;
-	                     
-	                    //this -> zmqadd_sub_->recv(&message);
-	                    try{
-	                        topic = this->s_recv();
-	                    	}
-				catch(...){
-				 // std::cout << "zmqclient_recv Interrupt exception was thrown." << std::endl;  
-					logfile.out_info("zmqclient_recv std::string topic = this->s_recv()" );
-				       continue;
-				}			
-	                  //  std::cout << "topic =" <<topic <<std::endl;
-	                    this -> zmqsub_->getsockopt( ZMQ_RCVMORE, &more, &more_size);
-	                                                                        
-	                    
-	                    try{
-	                         step = this->s_recv();
-	                    	}
-				catch(...){
-				 // std::cout << "zmqclient_recv Interrupt exception was thrown." << std::endl;  
-					logfile.out_info("zmqclient_recv std::std::string step = this->s_recv();" );
-				       continue;
-				}	
-	                     this -> zmqsub_->getsockopt( ZMQ_RCVMORE, &more, &more_size);
-	                   
-                    	try{
-	                        context = this->s_recv();
-	                    	}
-				catch(...){
-				 // std::cout << "zmqclient_recv Interrupt exception was thrown." << std::endl;  
-					logfile.out_info("zmqclient_recv std::string context = this->s_recv();" );
-				       continue;
+             // 100 milliseconds  ¶¨ÒåÒ»ÊÂ¼þ
+            zmq::poll (&items[0], 1,  10);
+             
+            if (items[0].revents & ZMQ_POLLIN) 
+                {
+                    //recv a messag
+                    int more;
+                    std::size_t more_size = sizeof (more);
+                    //zmq::message_t message;
+                     
+                    //this -> zmqadd_sub_->recv(&message);
+                    std::string topic = this->s_recv();
+                  //  std::cout << "topic =" <<topic <<std::endl;
+                    this -> zmqsub_->getsockopt( ZMQ_RCVMORE, &more, &more_size);
+                    //do some job                                                              
+                    std::string step = this->s_recv();
+                     this -> zmqsub_->getsockopt( ZMQ_RCVMORE, &more, &more_size);
+                    std::string context = this->s_recv();
+                    this -> zmqsub_->getsockopt( ZMQ_RCVMORE, &more, &more_size);
+                    if(!more)
+                        {
+                            //recv last message
+                            #if 1
+                         //if(topic.compare( MYGEARTRpcTopic) !=0){
+                          boost::format fmt1("zmq sub [%1%] : topic =%2% , size=[%3%] ");
+                          fmt1 % get_system_time();
+                          fmt1 % topic;
+                          fmt1 % context.size();
+                          std::cout << fmt1 << std::endl;
+                         //	}
+                          #endif
+                          //unpackage_main(context);
+                          //½ÓÊÕµ½ÃüÁî×ª·¢µ½ROSÄÚ²¿
+				dirv_ros_SendRpc(context);
+						  
+                        }
+                }
+            else{
+                //  std::cout << "zmqclient_recv  zmq::poll (&items[0], 1,  100)is timeout ................." << std::endl;  
+                //Ò»¶¨Ê±¼ä·¢ËÍÒ»´ÎÍøÂçÐÄÌ
+             boost::this_thread::interruption_point();  
 				}
-	                    this -> zmqsub_->getsockopt( ZMQ_RCVMORE, &more, &more_size);
-	                    if(!more)
-	                        {
-	                            //recv last message
-	                          unpackage_main(context);
-	                          //½ÓÊÕµ½ÃüÁî×ª·¢µ½ROSÄÚ²¿
-					//dirv_ros_SendRpc(context);
-				      //topic.clear();
-				      //context.clear();		  
-	                        }
-	                }
-	            else{
-		                //  std::cout << "zmqclient_recv  zmq::poll (&items[0], 1,  100)is timeout ................." << std::endl;  
-		                //Ò»¶¨Ê±¼ä·¢ËÍÒ»´ÎÍøÂçÐÄÌ
-		             boost::this_thread::interruption_point();  
-					   
-			}
-	      	}
         }
-   //     }
-   // catch(...){
-     //        // std::cout << "zmqclient_recv Interrupt exception was thrown." << std::endl;  
-	//      logfile.out_info("zmqclient_recv Interrupt exception was thrown." );
-    //    }
+        }
+    catch(...){
+              std::cout << "zmqclient_recv Interrupt exception was thrown." << std::endl;  
+        }
 } 
 
 void zmqclient::rospubtask(){  
@@ -322,44 +253,30 @@ void zmqclient::rospubtask(){
 } 
 
 void zmqclient::zmqpubtask(){  
-
+   // this->print_zmq_version();
     std::cout << "start to thread "<<"["<<__FUNCTION__ << "]"<<std::endl;
+    //zmq::message_t message(string.size());
+   // memcpy (message.data(), string.data(), string.size());
 
-    ros::Rate loop_rate(0.5);
     int index = 0;
    try{
-
-           while (ros::ok())
-		 {
-              loop_rate.sleep();
-		center_online.check_connect();
-		if(connectflag == true){
-				zmq_SendRpc(zmqheart_SendRpc(),ZMQ_NAME_DRIVERCTRL);
-			}
-
-              //boost::this_thread::sleep(boost::posix_time::seconds(1));
-		boost::this_thread::interruption_point();  
-		index++;
-		if((index>=60)&&(center_online.online==0)){
-				logfile.out_info("zmqpubtask: zmq connect heart ....................reconnected ");
-				connectflag = false;
-				disconnect();
-				boost::this_thread::sleep(boost::posix_time::seconds(1));
-				//destory();
-				connect();
-				index = 0;
-				
-			}
-		else if(index>=120){
-					
-				index = 0;
-			}
+	ros::Rate loop_rate(0.5);
+           while (ros::ok()) 
+        {
+            
+		std::string to=ZMQ_NAME_DRIVERCTRL;
+		std::string from = ZMQ_NAME_DRIVERCTRL;
 		
-             }
+		pacgagemessage_heart(to,from);
+		 loop_rate.sleep();
+             //boost::this_thread::sleep(boost::posix_time::seconds(2));
+              // sleep 100ºÁÃë;  
+              //boost::this_thread::sleep(boost::posix_time::millisec(100)); 
+           
+        }
     }
    catch(...){
-         //std::cout << "zmqclient_pub Interrupt exception was thrown." << std::endl;  
-	  logfile.out_info("zmqpubtask Interrupt exception was thrown." );
+         std::cout << "zmqclient_pub Interrupt exception was thrown." << std::endl;  
     }
    
 
@@ -415,102 +332,69 @@ std::string zmqclient::get_msg_string (zmq::message_t& message) {
 }
 
 
-int zmqclient::unpackage_main(std::string fun)
+void zmqclient::unpackage_main(std::string fun)
     {
     
         
      // Verify that the version of the library that we linked against is
     // compatible with the version of the headers we compiled against.
     GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-
+     
      PackageMessage msgrecv;
-	try{
-    			msgrecv.ParseFromString(fun);
-		}
-      catch(...){
-		 
-			std::ostringstream logstream;
-			logstream<<"["<<__FUNCTION__ << "]"<< "ParseFromString a error"<<std::endl; 
-			std::string logtext = logstream.str();
-			logfile.out_info( logtext);
-			return -1;  
-		    } 
-
-     #if 1
+     msgrecv.ParseFromString(fun);
+     #if DUBUG_ECHO
      show_mainmsg(msgrecv);
      #endif
      
-       std::string strto=msgrecv.to();
-	std::string strfrom=msgrecv.from();
-	PackageMessage_Call* callmsg = msgrecv.mutable_callmessage();
-	 std::string function=callmsg->function();
-	 
+     std::string strto=msgrecv.to();
      //std::cout<<"strto="<<strto<<std::endl;
      
     // ROS_INFO("strto=%s", strto.c_str());
      if(strto.compare( ZMQ_NAME_DRIVERCTRL) ==0){
             //×ª·¢¸øZMQ_NAME_DRIVERCTRL
-
-			
+            
             dirv_ros_SendRpc(fun);
-	     if(function.compare( MYGEARTRpcTopic) ==0){
-		 	//ÊÕµ½ÐÄÌø
-		 	center_online.Set_connect();
-	      }
-	else{
-		//¼ÇÂ¼·ÇÐÄÌøµÄÊý¾Ý°ü
-             std::ostringstream logstream;
-	      logstream<<"from=["<<strfrom<< "] to=["<<strto<< "]  function = "<<function<<std::endl; 
-	      std::string logtext = logstream.str();
-              logfile.out_info(logtext);
-
-		}
           
       }
-	return  1; 
+
+     
 }
 
 int  zmqclient::show_mainmsg(PackageMessage & msg)
 {
-		 
-	    boost::format fmt1("SessionId: = [%1%] Time: = [%2%] from: = [%3%] ");
-	    
-	    fmt1 %msg.sessionid();
-	    //std::cout<<"SessionId: "<<fmt.str()<<" ";
-	    //fmt.clear();
-	    fmt1 %msg.time();
-	    //std::cout<<"Time: "<<fmt.str()<<" ";
-	    // fmt.clear();
-	    fmt1 %msg.from();
-	   // std::cout<<"From: "<<fmt.str()<<" ";
-	   //  fmt.clear();
-	   // fmt %msg.to();
-	    std::cout<<fmt1.str()<<std::endl;
 
-	    if(msg.has_callmessage()){
-			boost::format fmt2("function: = [%1%] parameters_size = [%2%]");
-	            PackageMessage_Call *msgcall = msg.mutable_callmessage();
-	           //  fmt.clear();
-	            fmt2 %msgcall->function();
-	          //  std::cout<<"function: "<<fmt.str()<<" ";
-	            // fmt.clear();
-	            fmt2 %msgcall->parameters_size();
-	           // std::cout<<"parameters_size: "<<fmt.str()<<std::endl;
-	           std::cout<<fmt2.str()<<std::endl;
-	        }
-	    if(msg.has_resultmessage()){
-			boost::format fmt3("errorcode = [%1%]  has_resultdata = [%2%]  ");
-	            PackageMessage_Result *msgres= msg.mutable_resultmessage();
-	            // fmt.clear();
-	            fmt3 %msgres->errorcode();
-	           // std::cout<<"errorcode: "<<fmt.str()<<" ";
-	            // fmt.clear();
-	            fmt3 %msgres->has_resultdata();
-	           // std::cout<<"has_resultdata: "<<fmt.str()<<" ";
-	            std::cout<<fmt3.str()<<std::endl;
-	        }
-	
+    boost::format fmt("%1%");
+    std::cout<<"****************PackageMessage*******************"<<std::endl;
+    fmt %msg.sessionid();
+    std::cout<<"SessionId: "<<fmt.str()<<" ";
+    fmt.clear();
+    fmt %msg.time();
+    std::cout<<"Time: "<<fmt.str()<<" ";
+     fmt.clear();
+    fmt %msg.from();
+    std::cout<<"From: "<<fmt.str()<<" ";
+     fmt.clear();
+    fmt %msg.to();
+    std::cout<<"To: "<<fmt.str()<<std::endl;
+
+    if(msg.has_callmessage()){
+            PackageMessage_Call *msgcall = msg.mutable_callmessage();
+             fmt.clear();
+            fmt %msgcall->function();
+            std::cout<<"function: "<<fmt.str()<<" ";
+             fmt.clear();
+            fmt %msgcall->parameters_size();
+            std::cout<<"parameters_size: "<<fmt.str()<<std::endl;
+        }
+    if(msg.has_resultmessage()){
+            PackageMessage_Result *msgres= msg.mutable_resultmessage();
+             fmt.clear();
+            fmt %msgres->errorcode();
+            std::cout<<"errorcode: "<<fmt.str()<<" ";
+             fmt.clear();
+            fmt %msgres->has_resultdata();
+            std::cout<<"has_resultdata: "<<fmt.str()<<" ";
+        }
 
 
 }
@@ -522,21 +406,11 @@ int zmqclient::proc_zmq_recvheart(std::string pack)
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     PackageMessage msgrecv;
-    //msgrecv.ParseFromString(pack);
-	try{
-    			msgrecv.ParseFromString(pack);
-		}
-      catch(...){
-		 
-			std::ostringstream logstream;
-			logstream<<"["<<__FUNCTION__ << "]"<< "ParseFromString a error"<<std::endl; 
-			std::string logtext = logstream.str();
-			logfile.out_info( logtext);
-			return -1;  
-		    } 
-	  
+    msgrecv.ParseFromString(pack);
       int ret=0;
-
+      #if DUBUG_ECHO
+   ROS_INFO("zmqclient->proc_zmq_recvheart");
+      #endif
     std::string strto=msgrecv.to();
     
     if(strto.compare( ZMQ_NAME_DRIVERCTRL) ==0){
@@ -556,7 +430,6 @@ int zmqclient::proc_zmq_recvheart(std::string pack)
             switch(funid){
                     case 1:
                             connectflag = 1;
-				center_online.Set_connect();
                         break;
                        default:
                             break;
@@ -574,11 +447,13 @@ void zmqclient::dirv_ros_SendRpc(std::string msg)
     std_msgs::String stdmsg;
      stdmsg.data = msg;
    // ROS_INFO("ros pub: to=%s,size= [%d]", "dirv_recvcmd",stdmsg.data.size());
-
+   #if DUBUG_ECHO
+    std::cout<<"ros pub: to="
+        <<"dirv_recvcmd"<<",size="
+        <<stdmsg.data.size()<<std::endl;
+   #endif
      rospub.publish(stdmsg);
-     
      ros::spinOnce();
-    // stdmsg.Clear();
 }
 void zmqclient::zmq_SendRpc(std::string msg,std::string topic)
 {   
@@ -600,25 +475,13 @@ std::string zmqclient::Get_to(std::string fun){
      // Verify that the version of the library that we linked against is
     // compatible with the version of the headers we compiled against.
     GOOGLE_PROTOBUF_VERIFY_VERSION;
-   
-    PackageMessage msgrecv;
-    // msgrecv.ParseFromString(fun);
-	try{
-    			msgrecv.ParseFromString(fun);
-		}
-      catch(...){
-		 
-			std::ostringstream logstream;
-			logstream<<"["<<__FUNCTION__ << "]"<< "ParseFromString a error"<<std::endl; 
-			std::string logtext = logstream.str();
-			logfile.out_info( logtext);
-			return NULL;  
-		    } 
 
+    PackageMessage msgrecv;
+    msgrecv.ParseFromString(fun);
+   // show_mainmsg(msgrecv);
     std::string strfrom=msgrecv.to();
 
     return   strfrom;
-
 }
 
 void zmqclient::dirv_zmq_Callback(const std_msgs::String::ConstPtr& msg)
@@ -628,37 +491,18 @@ void zmqclient::dirv_zmq_Callback(const std_msgs::String::ConstPtr& msg)
          #endif
          if(connectflag == true){
                 std::string to = Get_to(msg->data);
-		if(to.size()>2){
-                		zmq_SendRpc(msg->data,to);
-			}
+                zmq_SendRpc(msg->data,to);
             }
         
  }
-
  void zmqclient::dirv_update_Callback(const std_msgs::String::ConstPtr& msg)
   {
-
+         #if DUBUG_ECHO
+         ROS_INFO("ros sub ->update: [%d]", msg->data.size());
+         #endif
          //std::string from = Get_from(msg->data);
          if(connectflag == true){
                 zmq_SendRpc(msg->data,ZMQ_STAND_TOPIC_DRIVERUPDATE);
-            }
-   
-  }
- 
- void zmqclient::weather_update_Callback(const std_msgs::String::ConstPtr& msg)
-  {
-
-         //std::string from = Get_from(msg->data);
-         if(connectflag == true){
-                zmq_SendRpc(msg->data,ZMQ_NAME_SERVER);
-         #if 0
-         //ROS_INFO("ros sub ->update: [%s][%d]", ZMQ_NAME_SERVER,msg->data.size());
-	  std::cout<<"ros sub ->update:"<<"["<<"UploadWeatherInfo]"<<"to ="<<ZMQ_NAME_SERVER<<std::endl;
-
-     		PackageMessage msgrecv;
-     		msgrecv.ParseFromString(msg->data);
-     		show_mainmsg(msgrecv);
-         #endif
             }
    
   }
@@ -677,39 +521,42 @@ void zmqclient::dirv_zmq_Callback(const std_msgs::String::ConstPtr& msg)
          // std::cout<<"uuid="<<str<<std::endl;
          return str;
      }
-std::string zmqclient::zmqheart_SendRpc(void)
-{   
-	// Verify that the version of the library that we linked against is
-	// compatible with the version of the headers we compiled against.
-	GOOGLE_PROTOBUF_VERIFY_VERSION; 
-	 
-	PackageMessage packMSg;
+ void zmqclient::pacgagemessage_heart(std::string& to,std::string& from)
+{
+      // Verify that the version of the library that we linked against is
+     // compatible with the version of the headers we compiled against.
+     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-	packMSg.Clear();
-	packMSg.set_sessionid(get_session());
-	packMSg.set_from(ZMQ_NAME_DRIVERCTRL);
-	packMSg.set_to(ZMQ_NAME_DRIVERCTRL);
-	packMSg.set_time(time(NULL));
-
-	PackageMessage_Call * call = packMSg.mutable_callmessage();
-	call->set_function( MYGEARTRpcTopic);
-
+         PackageMessage msg;
+         msg.set_sessionid(get_session());
+         msg.set_from(from);
+         msg.set_to(to);
+         msg.set_time( time(NULL));
+         
+         PackageMessage_Call* callmsg = msg.mutable_callmessage();
+         callmsg->set_function( MYGEARTRpcTopic);
+        // callmsg->add_parameters(topic);
+         
           //ÐòÁÐ»¯µ½ÄÚ´æ
-        std::ostringstream stream;
-	try{
-        	packMSg.SerializeToOstream(&stream);
-		}
-      catch(...){
-			std::ostringstream logstream;
-			logstream<<"["<<__FUNCTION__ << "]"<< "SerializeToOstream a error"<<std::endl; 
-			std::string logtext = logstream.str();
-			logfile.out_info( logtext);
-			return NULL;  
-		    } 
+          std::ostringstream stream;
+          msg.SerializeToOstream(&stream);
+          
+          std::string text = stream.str();
+          
+          //char* buf = text.c_str();
+          
+         int length = msg.ByteSize();
+         //char* buf = new char[length];
+         //msg.SerializeToArray(buf,length);
+         
+         //printPackageMessage(buf,length);
+         //·¢ËÍ³öÈ¥
+         zmq_SendRpc(text,MYGEARTRpcTopic);
 
-        std::string text = stream.str();
-  return text;
+         
+        // delete buf;
 }
+
 
 
 

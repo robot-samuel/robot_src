@@ -8,7 +8,6 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  dgvmsg
 )
 
 ## System dependencies are found with CMake's conventions
@@ -110,13 +109,9 @@ catkin_package(
 ###########
 ## Build ##
 ###########
-
-add_compile_options(-std=c++11)
-
 set(catkin_LIBRARIES "${catkin_LIBRARIES}" "/usr/local/lib/libprotobuf.so") 
 ##set(catkin_LIBRARIES "${catkin_LIBRARIES}" "/usr/local/lib/libsocketcan.so")
 set(catkin_LIBRARIES "${catkin_LIBRARIES}" "/usr/local/lib/libzmq.so") 
-set(catkin_LIBRARIES "${catkin_LIBRARIES}" "/usr/local/lib/libzlog.so") 
 
 #set(catkin_LIBRARIES "${catkin_LIBRARIES}" "${CATKIN_DEVEL_PREFIX}/lib/librobot2015_common_proto.so") 
 
@@ -143,7 +138,6 @@ include_directories(
 set ( CXX_SRCS 
     src/ZmqtransNode.cpp 
     src/zmqclient_class.cpp
-    src/zlogClass.cpp
  ) 
     
 add_executable(ZmqtransNode ${CXX_SRCS}) 
@@ -165,3 +159,50 @@ target_link_libraries(proxy_center
 		) 
 add_dependencies(proxy_center ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS}) 
 
+#############
+## Install ##
+#############
+
+# all install targets should use catkin DESTINATION variables
+# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
+
+## Mark executable scripts (Python etc.) for installation
+## in contrast to setup.py, you can choose the destination
+# install(PROGRAMS
+#   scripts/my_python_script
+#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
+
+## Mark executables and/or libraries for installation
+# install(TARGETS zmq_ros zmq_ros_node
+#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
+
+## Mark cpp header files for installation
+# install(DIRECTORY include/${PROJECT_NAME}/
+#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#   FILES_MATCHING PATTERN "*.h"
+#   PATTERN ".svn" EXCLUDE
+# )
+
+## Mark other files for installation (e.g. launch and bag files, etc.)
+# install(FILES
+#   # myfile1
+#   # myfile2
+#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+# )
+
+#############
+## Testing ##
+#############
+
+## Add gtest based cpp test target and link libraries
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_zmq_ros.cpp)
+# if(TARGET ${PROJECT_NAME}-test)
+#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+# endif()
+
+## Add folders to be run by python nosetests
+# catkin_add_nosetests(test)

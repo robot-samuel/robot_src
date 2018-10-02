@@ -54,7 +54,7 @@ kincocanfd133Mode::kincocanfd133Mode(std::string port,int *devadd,int *dir,int *
 }
 kincocanfd133Mode::~kincocanfd133Mode()
 {
-
+	DevCtrlDisEndable(mvecpa);
 }
 
 
@@ -180,7 +180,7 @@ void kincocanfd133Mode::kincocanfd133Mode_master(std::vector < boost::shared_ptr
 	
        std::cout<< "hello can_master "<<std::endl;
         
-
+	mvecpa = vecpa;
        
          int preokstatues_ptr=0;
          int errorcount=0;
@@ -266,6 +266,7 @@ void kincocanfd133Mode::kincocanfd133Mode_master(std::vector < boost::shared_ptr
 			for(int index=0;index<DRIVER_AMOUNT;index++){
 		 	if(Fd133Driver[index].m_BitStatus.bit3_isFault ==1 ){
 					statues_ptr=FUN_REENABLE;
+					 std::cout << "Fd133Driver[index].m_BitStatus.bit3_isFault" << std:: endl;
 		                }   
 				}
                         //Çý¶¯Æ÷×´Ì¬Ê§Áª
@@ -284,6 +285,7 @@ void kincocanfd133Mode::kincocanfd133Mode_master(std::vector < boost::shared_ptr
 				}		
 				loop_rate.sleep();
                      }
+		    DriveRelease(vecpa);
              }
         catch(boost::thread_interrupted&){
                  std::cout << "thread interrupt" << std:: endl;
@@ -654,7 +656,7 @@ void kincocanfd133Mode::DevSetspeed(std::vector < boost::shared_ptr<socketcan> >
 	
 	for(int index=0;index<DRIVER_AMOUNT;index++){  	 
 		vecpa[0]->clear();
-		std::cout<< "vec_speed =  "<<vec_speed[index]<<std::endl;
+		//std::cout<< "vec_speed =  "<<vec_speed[index]<<std::endl;
 		vecpa[0]->sendRequest(Fd133Driver[index].Cmd_SetVelocity(vec_speed[index]));
 		boost::this_thread::sleep(boost::posix_time::milliseconds(1));	
 				   
@@ -1194,7 +1196,7 @@ std::string  kincocanfd133Mode::Pack_driver_statues(int cnt)
            std::cout << "Failed to write msg driver Message." << std::endl; 
            return ""; 
        }  
-     std::cout<<"size="<<res.size()<<std::endl;
+   //  std::cout<<"size="<<res.size()<<std::endl;
     return res;
 }  
 

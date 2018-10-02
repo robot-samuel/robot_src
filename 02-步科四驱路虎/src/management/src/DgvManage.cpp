@@ -28,13 +28,23 @@ Dgv_Manage::Dgv_Manage()
 
             int index=1;
             zmqcmdlist.insert(std::make_pair("HeartBeat",index++ ));
+            zmqcmdlist.insert(std::make_pair("gettoken",index++));
+            zmqcmdlist.insert(std::make_pair( "getallstatues",index++));  
+            zmqcmdlist.insert(std::make_pair( "getspeed",index++));  
             zmqcmdlist.insert(std::make_pair("ctrlforward",index++));    
             zmqcmdlist.insert(std::make_pair("ctrlbackward",index++));   
             zmqcmdlist.insert(std::make_pair("ctrlturnleft",index++));   
             zmqcmdlist.insert(std::make_pair( "ctrlturnright",index++));   
             zmqcmdlist.insert(std::make_pair("ctrlstop",index++));     //cmdstop
             zmqcmdlist.insert(std::make_pair("ctrlstopfree",index++)); //stop run=0
-            zmqcmdlist.insert(std::make_pair("ctrlrun-speed-angle",index++));     
+            zmqcmdlist.insert(std::make_pair("ctrlrun-speed-angle",index++));   
+            zmqcmdlist.insert(std::make_pair("ctrlrun-left-right",index++));    
+            zmqcmdlist.insert(std::make_pair("dissolutionalarm",index++));   
+            zmqcmdlist.insert(std::make_pair("settoken",index++));   
+            zmqcmdlist.insert(std::make_pair("configcar",index++));   
+            zmqcmdlist.insert(std::make_pair("getcarconfig",index++));  
+            zmqcmdlist.insert(std::make_pair("Dcupdataall",index++)); 
+            
            zmqcmdlist.insert(std::make_pair("ctrlRealse",index++));
            zmqcmdlist.insert(std::make_pair("ctrlEnable",index++));
            zmqcmdlist.insert(std::make_pair("ClearError",index++));
@@ -83,7 +93,7 @@ Dgv_Manage::~Dgv_Manage()
 	statues.UartCmdMsg.twist.angular.y =  0.0;
 	statues.UartCmdMsg.twist.angular.z =  0.0;
 	
-	#if 1
+	#if 0
 	statues.print_UartCmdMsg(msg);
 	#endif
 	
@@ -111,28 +121,28 @@ Dgv_Manage::~Dgv_Manage()
     		ControllerMessage_Dirver DriverInforecv;
     		DriverInforecv.ParseFromString(cmdstr);
 		if(DriverInforecv.device_add() == DEV_DIR_ADD_LF){
-			std::cout<<"DEV_DIR_ADD_LF"<<std::endl;
+			//std::cout<<"DEV_DIR_ADD_LF"<<std::endl;
 			statues.Dirver[0].Clear();
 			statues.Dirver[0].CopyFrom(DriverInforecv);
 			statues.driverNode[0].Set_connect();
 			statues.strDirver[0]=cmdstr;
 		}
 		else if(DriverInforecv.device_add() == DEV_DIR_ADD_RF){
-			std::cout<<"DEV_DIR_ADD_RF"<<std::endl;
+			//std::cout<<"DEV_DIR_ADD_RF"<<std::endl;
 			statues.Dirver[1].Clear();
 			statues.Dirver[1].CopyFrom(DriverInforecv);
 			statues.driverNode[1].Set_connect();
 			statues.strDirver[1]=cmdstr;
 		}
 		else if(DriverInforecv.device_add() == DEV_DIR_ADD_LB){
-			std::cout<<"DEV_DIR_ADD_LB"<<std::endl;
+			//std::cout<<"DEV_DIR_ADD_LB"<<std::endl;
 			statues.Dirver[2].Clear();
 			statues.Dirver[2].CopyFrom(DriverInforecv);
 			statues.driverNode[2].Set_connect();
 			statues.strDirver[2]=cmdstr;
 		}
 		else if(DriverInforecv.device_add() == DEV_DIR_ADD_RB){
-			std::cout<<"DEV_DIR_ADD_RB"<<std::endl;
+			//std::cout<<"DEV_DIR_ADD_RB"<<std::endl;
 			statues.Dirver[3].Clear();
 			statues.Dirver[3].CopyFrom(DriverInforecv);
 			statues.driverNode[3].Set_connect();
@@ -176,11 +186,11 @@ void Dgv_Manage:: joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
            // print_joymsg(joy);
             if(ctrl_ID <=USBREMOTE_JOY){
           // X vel driven by left joystick for and aft
-          statues.Joycmd_velocity.linear.x = joy->axes[0]*-1;
+          statues.Joycmd_velocity.linear.x = joy->axes[1]*-1;
           statues.Joycmd_velocity.linear.y =  0.0;
           statues.Joycmd_velocity.linear.z=  0.0;
           // heading driven by left joysticj left and right
-          statues.Joycmd_velocity.angular.x = joy->axes[1]*-1;
+          statues.Joycmd_velocity.angular.x = joy->axes[3]*-1;
           statues.Joycmd_velocity.angular.y =  0.0;
           statues.Joycmd_velocity.angular.z = 0;
           //Joycmd_velocity.angular.z =  scale*joy->axes[6];

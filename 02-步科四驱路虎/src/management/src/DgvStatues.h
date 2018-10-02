@@ -73,10 +73,10 @@ public:
 
 	enum dev_add{
             MYADD  =100,
-            DEV_DIR_ADD_LF =100,
+            DEV_DIR_ADD_LF =101,
             DEV_DIR_ADD_LB =102,
-            DEV_DIR_ADD_RF =101,
-            DEV_DIR_ADD_RB =103
+            DEV_DIR_ADD_RF =103,
+            DEV_DIR_ADD_RB =104,
 		};
 	
 	enum CtrlID{

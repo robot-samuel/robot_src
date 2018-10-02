@@ -101,8 +101,8 @@ public:
    enum dev_add{
             MYADD  =100,
             DEV_DIR_ADD_LF =1,
-            DEV_DIR_ADD_LB =2,
-            DEV_DIR_ADD_RF =3,
+            DEV_DIR_ADD_LB =3,
+            DEV_DIR_ADD_RF =2,
             DEV_DIR_ADD_RB =4,
     };
 private:
@@ -198,6 +198,8 @@ private:
 
 	int statues_ptr;
 	int   velocity[DRIVER_AMOUNT];  //ÀŸ∂»÷∏¡Ó
+
+	std::vector < boost::shared_ptr<socketcan> > mvecpa;
 };
 
 
