@@ -1,0 +1,20 @@
+message PackageMessage {  
+	optional string Token = 1;    //安全令牌，经过服务器登录后返回
+	required string SessionId =2; //本次调用的id，使用guid，如果是回应某个调用，则即为调用方的SessionId
+	optional int64 Time=3;  //命令发送时的时间
+	optional string From=4; //发送方的身份命名，一般为应用程序名称或模块名称
+	optional string To=5;   //发送目标，如果为空或*，则代表全部
+	optional Call CallMessage = 6;     //调用信息
+	optional Result ResultMessage= 7;  //返回结果
+	optional string robotID= 8;  //机器人ID
+
+	message  Call {  
+		optional string Service = 1;   //服务名
+		required string Function = 2;  //函数
+		repeated bytes Parameters = 3; //参数
+	};  
+	message Result {
+		required int32 ErrorCode=1;    //错误代码，0代表正确，其他代表各种错误
+		optional bytes ResultData = 2; //返回结果
+	};  
+};  

@@ -1,0 +1,34 @@
+<launch>
+  <arg name="COM1" value="/dev/ttymxc1"/> 
+  <arg name="COM2" value="/dev/ttymxc2"/> 
+  <arg name="COM3" value="/dev/ttymxc3"/> 
+
+  <arg name="CAN1" value="can0"/> 
+  <arg name="CAN2" value="can1"/> 
+  
+  <arg name="BANDRATE_115200" value="38400"/> 
+  <arg name="BANDRATE_9600" value="9600"/> 
+  <arg name="BANDRATE_2400" value="2400"/> 
+  <arg name="BANDRATE_38400" value="38400"/> 
+  
+  <arg name="CANBANDRATE_500K" value="500"/> 
+  
+  <arg name="DEV_DIR_ADD_LF" value="101"/> 
+  <arg name="DEV_DIR_ADD_LB" value="102"/> 
+  <arg name="DEV_DIR_ADD_RF" value="103"/> 
+  <arg name="DEV_DIR_ADD_RB" value="104"/> 
+  
+  <arg name="EXTERN_ADD" value="01"/> 
+  <arg name="BMS_ADD" value="01"/> 
+  <arg name="DEFAULT_ADD" value="01"/>
+  
+     <!-- run qtcontroller kincors232fd133 kincors232fd133_single -->
+	
+   <node pkg="dkincocanfd133" name="dkincocanfd133_LF_LB"  type="dkincocanfd133" output="screen" args=" $(arg CAN1) $(arg DEV_DIR_ADD_LF) 1 -1 $(arg DEV_DIR_ADD_LB) 3 -1" />
+   <node pkg="dkincocanfd133" name="dkincocanfd133_RF_RB"  type="dkincocanfd133" output="screen" args=" $(arg CAN2) $(arg DEV_DIR_ADD_RF) 2 1 $(arg DEV_DIR_ADD_RB) 4 1" />
+	
+	<node pkg="joyde" name="JoyTestNode"  type="joyrecvtest" output="screen"/>
+	<node pkg="management" name="dgv_manageNode"  type="dgv_manageNode" output="screen"/>
+	<node pkg="zmq_ros" name="ZmqTransNode"  type="ZmqtransNode" output="screen"/>
+	
+</launch>

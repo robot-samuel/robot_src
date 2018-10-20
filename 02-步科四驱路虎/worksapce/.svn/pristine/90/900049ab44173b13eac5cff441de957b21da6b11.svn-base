@@ -1,0 +1,23 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+lspci -vd 13a8:*
+echo -n "0000:02:00.0" > /sys/bus/pci/drivers/serial/unbind
+cd /home/pc-robot/workspace/pcidrv/xr17v25x_35x-lnx2.6.32-and-newer-pak_ver2.2
+
+insmod xr17v35x.ko
+
+
+
+
+exit 0

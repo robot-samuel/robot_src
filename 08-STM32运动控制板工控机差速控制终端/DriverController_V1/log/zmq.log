@@ -1,0 +1,75 @@
+10-03 10:29:46 INFO  [11848:zlogClass.cpp:47] tcp://192.168.3.80:1234
+10-03 10:29:46 INFO  [11848:zlogClass.cpp:47] tcp://192.168.3.80:5678
+10-03 10:29:46 INFO  [11848:zlogClass.cpp:47] connect to PUB: tcp://192.168.3.80:1234 SUB: tcp://192.168.3.80:5678 is successed
+10-05 09:28:00 INFO  [1767:zlogClass.cpp:47] tcp://192.168.1.80:1234
+10-05 09:28:00 INFO  [1767:zlogClass.cpp:47] tcp://192.168.1.80:5678
+10-05 09:28:00 INFO  [1767:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.80:1234 SUB: tcp://192.168.1.80:5678 is successed
+10-05 09:49:38 INFO  [6823:zlogClass.cpp:47] tcp://192.168.1.80:1234
+10-05 09:49:38 INFO  [6823:zlogClass.cpp:47] tcp://192.168.1.80:5678
+10-05 09:49:38 INFO  [6823:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.80:1234 SUB: tcp://192.168.1.80:5678 is successed
+10-05 09:51:09 INFO  [7461:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 09:51:09 INFO  [7461:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 09:51:09 INFO  [7461:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 09:53:33 INFO  [8092:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 09:53:33 INFO  [8092:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 09:53:33 INFO  [8092:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 09:55:09 INFO  [8741:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 09:55:09 INFO  [8741:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 09:55:09 INFO  [8741:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 09:58:00 INFO  [9385:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 09:58:00 INFO  [9385:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 09:58:00 INFO  [9385:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:00:33 INFO  [9999:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:00:33 INFO  [9999:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:00:33 INFO  [9999:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:00:43 INFO  [10644:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:00:43 INFO  [10644:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:00:43 INFO  [10644:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:07:29 INFO  [12168:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:07:29 INFO  [12168:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:07:29 INFO  [12168:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:07:39 INFO  [12803:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:07:39 INFO  [12803:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:07:39 INFO  [12803:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:15:27 INFO  [13464:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:15:27 INFO  [13464:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:15:27 INFO  [13464:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:17:36 INFO  [14117:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:17:36 INFO  [14117:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:17:36 INFO  [14117:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:19:17 INFO  [14775:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:19:17 INFO  [14775:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:19:17 INFO  [14775:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:20:02 INFO  [15413:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:20:02 INFO  [15413:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:20:02 INFO  [15413:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:21:00 INFO  [16053:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:21:00 INFO  [16053:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:21:00 INFO  [16053:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:24:32 INFO  [17185:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:24:32 INFO  [17185:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:24:32 INFO  [17185:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:25:38 INFO  [17826:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:25:38 INFO  [17826:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:25:38 INFO  [17826:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:26:49 INFO  [1610:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:26:49 INFO  [1610:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:26:49 INFO  [1610:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:29:50 INFO  [2253:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:29:50 INFO  [2253:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:29:50 INFO  [2253:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:31:32 INFO  [2966:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:31:32 INFO  [2966:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:31:32 INFO  [2966:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:35:15 INFO  [4752:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:35:15 INFO  [4752:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:35:15 INFO  [4752:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:36:13 INFO  [5393:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:36:13 INFO  [5393:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:36:13 INFO  [5393:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:37:34 INFO  [6048:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:37:34 INFO  [6048:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:37:34 INFO  [6048:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed
+10-05 10:39:06 INFO  [6706:zlogClass.cpp:47] tcp://192.168.1.82:1234
+10-05 10:39:06 INFO  [6706:zlogClass.cpp:47] tcp://192.168.1.82:5678
+10-05 10:39:06 INFO  [6706:zlogClass.cpp:47] connect to PUB: tcp://192.168.1.82:1234 SUB: tcp://192.168.1.82:5678 is successed

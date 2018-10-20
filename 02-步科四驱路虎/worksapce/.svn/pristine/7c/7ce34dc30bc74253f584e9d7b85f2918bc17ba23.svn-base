@@ -13,11 +13,11 @@
 source /opt/ros/kinetic/setup.bash
 #echo "123" > a1.txt 
 #source /home/pc-robot/workspace/ubuntu_dev/02-controller_232/devel/setup.bash 
-source /root/worksapce/devel/setup.bash
+source /root/worksapce/01-work/husky/devel/setup.bash
 #echo "123" >a2.txti
 #export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/root/workspace/ubuntu_dev/02-controller_232/src
 #export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH/root/workspace/ubuntu_dev/02-controller_232/src
 #roslaunch /home/pc-robot/workspace/ubuntu_dev/02-controller_232/launch/Controller-test.launch 
 
-roslaunch /root/worksapce/launch/QController.launch 
+roslaunch /root/worksapce/01-work/husky/launch/QController.launch
 exit 0

@@ -1,0 +1,30 @@
+message ExternSensor {
+	repeated  int32 Temp_Pt100= 1; //pt100采集温度值
+	repeated  Mode_Temp_humi Temp_humi= 2; //温湿度传感器通道
+	repeated  Mode_fan fan_msg=3;  //风扇模块信息
+	repeated int32 IO_Infrared=4;   //防跌落通道  0 正常 1 有悬空
+	repeated int32 IO_collision=5;   //防碰撞通道  0 无 1 有障碍
+	optional string LED_status= 6; //LED 状态 "LED_CLOSE" "LED_GREEN" "LED_RED" "LED_BLUE" "LED_GREEN_FLI" "LED_RED_FLI" "LED_BLUE_FLI"
+	optional Mode_PX24ES PX24ES=7; //松下壁障传感器
+	optional int32 online=8; //模块是否连接在线 0 断开连接 1 在线
+	
+	message Mode_Temp_humi{
+		optional int32 interior_temp=1;  //机箱内部温度
+		optional int32 interior_humi=2;  //机箱内部湿度
+	};
+	
+	message Mode_fan{
+		optional int32 fan_ID= 1; //模块ID
+		optional int32 fan_Mode= 2; //运行模式  0-手动  1 自动
+		optional int32 fan_status= 3; //运行状态  0-关闭  1 运转
+		optional int32 vaule_open=4;  //自动模式高温值
+		optional int32 vaule_close=5;  //自动模式低温值
+	};
+	
+	message Mode_PX24ES{
+		optional int32 out1=1; //区域1
+		optional int32 out2=2; //区域2
+		optional int32 Extraneouslight_out=3; //外部光干扰	
+	};	
+};
+

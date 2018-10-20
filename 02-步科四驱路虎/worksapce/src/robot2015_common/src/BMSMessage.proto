@@ -1,0 +1,37 @@
+message BmsMessage {
+    optional int32 Stat = 1;   //通信状态 1 通信正常  0 通信不正常或掉线
+    optional int32 BMS_SOC=2;   //电池当前容量
+    optional int32 BMS_FULL_SOC=3; //电池充满容量
+    optional float BMS_Voltage=4;   //电池电压
+    optional float BMS_sys_Current=5;  //系统电流
+    optional float BMS_motor_Current=6;  //电机电流（预留）
+    optional float BMS_charg_Current=7;  //充电电流
+    optional int32 BMS_board_temp=8;  //BMS电路板温度（预留）
+    optional int32 BMS_battery_tempA=9; //电池温度A（预留）
+    optional int32 BMS_battery_tempB=10;  //电池温度B（预留）
+
+    optional  statusMessage statusMsg=11;
+    optional  alarmMessage alarmMsg=12;
+	
+	message statusMessage{
+        optional bool   BMS_status_Charge_Touch=1; //充电器连接状态    
+        optional bool   BMS_status_Charge_Connect=2; //充电状态   
+        optional bool   BMS_status_Emergency_Status=3;//急停开关状态  
+        optional bool   BMS_status_Switch_Status=4; //电源开关状态  （预留）
+        optional bool   BMS_status_Motor24_Status=5; //电机电源状态  （预留）
+        optional bool   BMS_status_SYS24_Status=6; //系统电源状态 （预留）
+        optional bool   BMS_status_Heat_Status=7; //加热状态  （预留）
+        optional bool   BMS_status_Fan_Status=8; //风扇状态（预留）
+	};	
+
+	message alarmMessage{
+        optional bool   BMS_error_Voltage_Alarm=1;//电压报警  
+        optional bool   BMS_error_Voltage_Error=2;//电压错误  
+        optional bool   BMS_error_Current_Alarm=3;       //电流报警   
+        optional bool   BMS_error_Current_Error=4;//电流错误  
+        optional bool   BMS_error_Temperature_Alarm=5;//温度报警  （预留）
+        optional bool   BMS_error_Temperature_Error=6;//温度错误  （预留）
+        optional bool   BMS_error_SOC_Alarm=7;       //容量报警   
+        optional bool   BMS_error_SOC_Error=8;       //容量错误
+	};
+};

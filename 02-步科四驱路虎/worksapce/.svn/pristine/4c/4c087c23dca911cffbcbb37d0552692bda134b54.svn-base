@@ -1,0 +1,59 @@
+
+catkin_create_pkg dgvmsg std_msgs rospy roscpp
+catkin_create_pkg joyde std_msgs rospy roscpp
+catkin_create_pkg management std_msgs rospy roscpp
+catkin_create_pkg robot2015_common std_msgs rospy roscpp
+catkin_create_pkg zmq_ros std_msgs rospy roscpp
+catkin_create_pkg kincocanfd133 std_msgs rospy roscpp
+catkin_create_pkg dkincocanfd133 std_msgs rospy roscpp
+catkin_create_pkg kincors232fd133 std_msgs rospy roscpp
+
+-- ~~  - dgvmsg
+-- ~~  - joyde
+-- ~~  - laser_ctrol
+-- ~~  - management
+-- ~~  - motecdriver
+-- ~~  - robot2015_common
+-- ~~  - zmq_ros
+
+
+
+workspace_folder/        -- WORKSPACE
+  src/                   -- SOURCE SPACE
+    CMakeLists.txt       -- 'Toplevel' CMake file, provided by catkin
+    package_1/
+      CMakeLists.txt     -- CMakeLists.txt file for package_1
+      package.xml        -- Package manifest for package_1
+    ...
+    package_n/
+      CMakeLists.txt     -- CMakeLists.txt file for package_n
+      package.xml        -- Package manifest for package_n
+
+catkin_create_pkg dgvmsg std_msgs rospy roscpp
+catkin_create_pkg control_dirver std_msgs rospy roscpp
+catkin_create_pkg externllaser std_msgs rospy roscpp
+
+
+catkin_make -DCATKIN_WHITELIST_PACKAGES="robot2015_common"
+catkin_make -DCATKIN_WHITELIST_PACKAGES="dgvmsg"
+catkin_make -DCATKIN_WHITELIST_PACKAGES=""
+
+export ROS_PACKAGE_PATH="/home/pc-robot/workspace/ubuntudev/03-controler/02-controller_232/src:/opt/ros/indigo/share:/opt/ros/indigo/stacks"
+export ROS_PACKAGE_PATH="/opt/ros/indigo/share:/opt/ros/indigo/stacks"
+"/home/pc-robot/workspace/src_controller/01-controllerBoard/02-controller_232/src:/home/pc-robot/workspace/ubuntudev/03-controler/02-controller_232/src:/opt/ros/indigo/share:/opt/ros/indigo/stacks"
+
+export | grep ROS
+若出现如下的，说明是正确的
+declare -x ROSLISP_PACKAGE_DIRECTORIES=""
+declare -x ROS_DISTRO="indigo"
+declare -x ROS_ETC_DIR="/opt/ros/indigo/etc/ros"
+declare -x ROS_MASTER_URI="http://localhost:11311"
+declare -x ROS_PACKAGE_PATH="/opt/ros/indigo/share:/opt/ros/indigo/stacks"
+declare -x ROS_ROOT="/opt/ros/indigo/share/ros"
+
+export | grep CMAKE
+
+/opt/ros/kinetic/share/catkin/cmake/toplevel.cmake
+
+
+

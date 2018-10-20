@@ -1,0 +1,21 @@
+syntax = "proto3";
+message PackageMessage {  
+	 string Token = 1;    //��ȫ���ƣ�������������¼�󷵻�
+	 string SessionId =2; //���ε��õ�id��ʹ��guid������ǻ�Ӧĳ�����ã���Ϊ���÷���SessionId
+	 int64 Time=3;  //�����ʱ��ʱ��
+	 string From=4; //���ͷ������������һ��ΪӦ�ó������ƻ�ģ������
+	 string To=5;   //����Ŀ�꣬���Ϊ�ջ�*�������ȫ��
+	 Call CallMessage = 6;     //������Ϣ
+	 Result ResultMessage= 7;  //���ؽ��
+	 string robotID= 8;  //������ID
+
+	message  Call {  
+		 string Service = 1;   //������
+		 string Function = 2;  //����
+		repeated bytes Parameters = 3; //����
+	};  
+	message Result {
+		 int32 ErrorCode=1;    //������룬0������ȷ������������ִ���
+		 bytes ResultData = 2; //���ؽ��
+	};  
+};  

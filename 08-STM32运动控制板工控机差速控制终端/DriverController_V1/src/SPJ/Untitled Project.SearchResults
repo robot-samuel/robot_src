@@ -1,0 +1,8 @@
+---- LFMotor_error Matches (8 in 2 files) ----
+DMCtrl_Mode.cpp (\\192.168.1.82\pc-robot\workspace\controller\drivercontroller_v1\src\mctrlnode\src):   	std::cout<<"LFMotor_error="<<LFMotor_error<<std::endl;	
+DMCtrl_Mode.cpp (\\192.168.1.82\pc-robot\workspace\controller\drivercontroller_v1\src\mctrlnode\src):				if((LFMotor_error !=0)&&(RFMotor_error!=0)){
+DMCtrl_Mode.cpp (\\192.168.1.82\pc-robot\workspace\controller\drivercontroller_v1\src\mctrlnode\src):	LFMotor_error=0;
+DMCtrl_Mode.cpp (\\192.168.1.82\pc-robot\workspace\controller\drivercontroller_v1\src\mctrlnode\src):	unsigned char * ps3  = (unsigned char *)(&LFMotor_error);
+DMCtrl_Mode.cpp (\\192.168.1.82\pc-robot\workspace\controller\drivercontroller_v1\src\mctrlnode\src):	Statues.errorcode[0] = LFMotor_error;
+DMCtrl_Mode.cpp (\\192.168.1.82\pc-robot\workspace\controller\drivercontroller_v1\src\mctrlnode\src):	Statues.errorcode[1] = LFMotor_error;
+DMCtrl_Mode.hpp (\\192.168.1.82\pc-robot\workspace\controller\drivercontroller_v1\src\mctrlnode\src):	unsigned short int LFMotor_error;

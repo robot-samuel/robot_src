@@ -1,0 +1,180 @@
+#pragma once
+
+#include "dgvmsg/ctrl_ModeMessage.h"
+#include <geometry_msgs/Twist.h>
+#include <sensor_msgs/Joy.h>
+
+#include <boost/date_time/posix_time/posix_time.hpp>  
+#include "zmqclient.h"
+#include<vector>
+
+class ErrorLogMessage
+{
+public:
+	int time_start;
+	int time_end;
+	std::string Strerror;
+	int errorcode;
+};
+class OnlineLogMessage
+{
+public:
+       int online;
+       boost::posix_time::ptime time_recvnow;  
+       boost::posix_time::millisec_posix_time_system_config::time_duration_type time_elapse;
+       OnlineLogMessage()
+       	{
+		online = 0; 
+		time_recvnow = boost::posix_time::microsec_clock::universal_time();  
+       	}
+	int check_connect()
+	{   
+
+	    if(online == 1)
+	        {
+	            //
+	             boost::posix_time::ptime now;
+	            // 这里为微秒为单位;这里可以将microsec_clock替换成second_clock以秒为单位;  
+	            now = boost::posix_time::microsec_clock::universal_time();
+	            time_elapse = now - time_recvnow;
+	            // 类似GetTickCount，只是这边得到的是2个时间的ticket值的差，以微秒为单位;  
+	            int ticks = time_elapse.ticks();  
+	            // 得到两个时间间隔的秒数;   
+	            int sec = time_elapse.total_seconds();
+	            if(sec>=4){
+	                    online = 0;
+	                }
+	            
+	        
+		}
+        return online;
+	        
+	} 
+
+	int Set_connect()
+	{   
+              online=1;
+                    // 这里为微秒为单位;这里可以将microsec_clock替换成second_clock以秒为单位;  
+               time_recvnow = boost::posix_time::microsec_clock::universal_time();  
+	        
+	} 
+	
+       
+};
+
+class Dgv_statues
+{
+public:
+
+	enum dev_add{
+            MYADD  =100,
+            DEV_DIR_ADD_LF =100,
+            DEV_DIR_ADD_LB =102,
+            DEV_DIR_ADD_RF =101,
+            DEV_DIR_ADD_RB =103
+		};
+	
+	enum CtrlID{
+                    NONE = 0,    //空闲
+                    NET_USER=1,  //网络用户控制
+                    RS232_USER=2,  //网络用户控制
+                    LASER_USER, 
+                    REMOTE_JOY,
+                    USBREMOTE_JOY   //遥控JOY手柄控制                
+		};
+	enum DEV_FANS{
+    			ID_FAN_1 = 1,
+    			ID_FAN_2 = 2
+		};  
+
+	enum DEV_BCTRL{
+    			ID_ENABLE = 1,
+    			ID_DISENABLE = 0
+		};  
+	enum DEV_NUM{
+    			DRIVER_AMOUNT = 4
+		};  
+public:
+
+	Dgv_statues();
+	~Dgv_statues();
+	void MyMemclear(const void *src,int count);
+	
+	//driver
+	OnlineLogMessage driverNode[DRIVER_AMOUNT];
+	ControllerMessage_Dirver  Dirver[DRIVER_AMOUNT];
+	unsigned char driveradd[DRIVER_AMOUNT];
+	std::string strDirver[DRIVER_AMOUNT];
+
+	//laser
+ 	void print_laserCmdMsg(const dgvmsg::ctrl_ModeMessage::ConstPtr& msg);
+	//extern
+
+	//bms
+
+
+	//超声波
+
+	//ZEROMQ
+	OnlineLogMessage ZmqTransNode;
+
+	//REMOTE_JOY
+
+	
+	//USBREMOTE_JOY
+	OnlineLogMessage USBJostickNode;
+	geometry_msgs::Twist Joycmd_velocity; 
+	int joyconnect;
+	int joystick_count;
+	 void print_joymsg(const sensor_msgs::Joy::ConstPtr& joy);
+
+	void JoycmdClear();
+
+	
+	//NET_USER
+	OnlineLogMessage CenterNode;	
+	int center_isconnect ;
+	int center_count ;
+
+
+	int is_CanContenct();
+	int is_DriverOK();
+
+
+	
+//private:
+	struct DEVICE_DRIV_CTRL_ERROR_CODE1{
+		unsigned char  bit0_FAULT_SYSTEM_ERROR; //系统故障 
+		unsigned char  bit1_WARNING_I2T_ERROR;  //I2T警告
+		unsigned char  bit2_FAULT_PARAMETER_ERROR;  //初始化参数错误
+		unsigned char  bit3_FAULT_UNDER_VOLTAGE;  //欠压 
+		unsigned char  bit4_FAULT_OVER_VOLTAGE;  //过压 
+		unsigned char  bit5_FAULT_I2T_ERROR;   //I2T报警 
+		unsigned char  bit6_WARNING_PEAKCURRENT_ARRIVED;  //电流达到峰值电流
+		unsigned char  bit7_FAULT_POSITION_FOLLOWING_ERROR; //位置偏差过大
+		unsigned char  bit8_FAULT_ENCODER; //编码器信号故障 
+		unsigned char  bit9_FAULT_VELOCITY_FOLLOWING_ERROR; //速度偏差过大
+		unsigned char  bit10_WARNING_IPM_TEMPERATURE;  //IPM模块温度超过一级限值 
+		unsigned char  bit11_FAULT_IPM_TEMPERATURE; //IPM模块温度超过二级限值 
+		unsigned char  bit12_FAULT_VELOBSERVER_FOLLOWING_ERROR; //速度超限报警 
+		unsigned char  bit13_FAULT_FLASH_ERROR;  //FLASH 读写故障 
+		unsigned char  bit14_FAULT_CURRENT_OFFSET;  //电流检测零点异常
+		unsigned char  bit15_WARNING_LIMIT;  //电流检测零点异常 
+
+	};
+	struct DEVICE_DRIV_Status{
+		unsigned char bit0_isDone;
+		unsigned char bit1_isNearlyDone;
+		unsigned char bit2_isPositiveLimit;
+		unsigned char bit3_isNegativeLimit;
+		unsigned char bit4_isIndexPulse;
+		unsigned char bit5_logging_complete;
+		unsigned char bit6_motor_enable;
+		unsigned char bit7_error_status;
+	};
+
+
+	
+	
+	
+};

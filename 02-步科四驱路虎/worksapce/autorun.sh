@@ -19,5 +19,5 @@ source /root/worksapce/devel/setup.bash
 #export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH/root/workspace/ubuntu_dev/02-controller_232/src
 #roslaunch /home/pc-robot/workspace/ubuntu_dev/02-controller_232/launch/Controller-test.launch 
 
-roslaunch /root/worksapce/launch/QController.launch 
+roslaunch /root/worksapce/launch/QController.launch
 exit 0

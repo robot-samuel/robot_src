@@ -1,0 +1,10 @@
+---- DevSetspeed Matches (9 in 2 files) ----
+dkincocanfd133Mode.cpp (f:\local_svn\03-robtos_dev\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\dkincocanfd133\src):        DevSetspeed(vecpa,velocity);
+dkincocanfd133Mode.cpp (f:\local_svn\03-robtos_dev\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\dkincocanfd133\src):void kincocanfd133Mode::DevSetspeed(std::vector < boost::shared_ptr<socketcan> > &vecpa,int *vec_speed){
+dkincocanfd133Mode.cpp (f:\local_svn\03-robtos_dev\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\dkincocanfd133\src):	std::cout<< "hello DevSetspeed "<<std::endl;
+dkincocanfd133Mode.cpp (f:\local_svn\03-robtos_dev\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\dkincocanfd133\src):		std::string errprint = ttyport+"  DevSetspeed recv  error";  
+dkincocanfd133Mode.cpp (f:\local_svn\03-robtos_dev\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\dkincocanfd133\src):        DevSetspeed(vecpa,0);
+dkincocanfd133Mode.cpp (f:\local_svn\03-robtos_dev\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\dkincocanfd133\src):   DevSetspeed(vecpa,velocity);   
+dkincocanfd133Mode.cpp (f:\local_svn\03-robtos_dev\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\dkincocanfd133\src):   //DevSetspeed(vecpa,velocity);   
+dkincocanfd133Mode.cpp (f:\local_svn\03-robtos_dev\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\dkincocanfd133\src):   DevSetspeed(vecpa,velocity);  
+dkincocanfd133Mode.hpp (f:\local_svn\03-robtos_dev\02-src\trunk\01-controller\02-imax6q_tq_kinco_can_husky\src\dkincocanfd133\src):	void DevSetspeed(std::vector < boost::shared_ptr<socketcan> > &vecpa,int *vec_speed);
